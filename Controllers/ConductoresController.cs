@@ -6,27 +6,23 @@ using System.Web.Mvc;
 
 namespace SoteloProjectFramework.Controllers
 {
-    public class BuzonController : Controller
+    public class ConductoresController : Controller
     {
-        // GET: Buzon
+        // GET: Conductores
         public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult Nuevo()
+        public ActionResult Cemex()
         {
             return View();
         }
 
-        public ActionResult Pendiente()
+        public ActionResult Moctezuma()
         {
             return View();
         }
 
-        public ActionResult Atendido()
-        {
-            return View();
-        }
     }
 }

@@ -172,6 +172,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\BuzonController.cs" />
+    <Compile Include="Controllers\ConductoresController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
@@ -637,6 +638,10 @@
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Usuarios\Index.cshtml" />
     <Content Include="Views\Buzon\Index.cshtml" />
+    <Content Include="Views\Conductores\Index.cshtml" />
+    <Content Include="Views\Buzon\Nuevo.cshtml" />
+    <Content Include="Views\Buzon\Pendiente.cshtml" />
+    <Content Include="Views\Buzon\Atendido.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
