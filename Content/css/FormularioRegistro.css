@@ -1,0 +1,57 @@
+﻿#contenido{
+    margin-top: 10vh;
+    margin-left:20vw;
+    width: 80vw;
+}
+
+.verde {
+    background-color: rgba(184, 233, 148,0.6);
+    width: 45vw;
+    height: 35vh;
+    border-radius: 15px;
+}
+
+.azul {
+    margin-top: 2vh;
+    margin-left: 2vw;
+    height: 36vh;
+    width: 45vw;
+    background-color: rgba(12, 36, 97,0.9);
+    border-radius: 15px;
+}
+
+#contacto {
+    color: white;
+    background-color: rgba(255, 255, 255,0.6);
+    height: 4vh;
+    width: 10vw;
+    font-size: 2vh;
+    margin-bottom: 10vh;
+}
+
+#formulario {
+    margin:5vh auto;
+    width:90%; 
+ 
+}
+
+.form-control {
+    border-radius:15px;
+}
+
+
+#navbar {
+    width: 5vw;
+}
+
+
+
+.boton {
+    border-radius:15px;
+}
+
+
+
+.margen {
+   margin-top:1vh;   
+}

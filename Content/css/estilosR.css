@@ -1,0 +1,140 @@
+﻿
+
+#Sotelo {
+    background-image: url("../img/Principal.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 130vh;
+    margin-bottom: 5vh;
+}
+
+
+h1, h2 {
+    font-size: 3vw;
+}
+
+
+
+#Nosotros {
+    margin-top: 15vh;
+    margin-bottom: 15vh;
+}
+
+#mision {
+    background-color: #192a56;
+    padding-top: 15vh;
+    padding-bottom: 15vh;
+}
+#sedes {
+    background-color: #192a56;
+    margin-top: 15vh;
+    margin-bottom: 15vh;
+    padding-top: 15vh;
+    padding-bottom: 15vh;
+}
+
+#mision > h1 {
+        margin-right:3vw;
+        padding-bottom:5vh;
+
+}
+#vision {
+    margin-top: 15vh;
+    margin-bottom: 15vh;
+    padding-top: 15vh;
+    padding-bottom: 15vh;
+}
+
+#vision > h1 {
+    margin-left: 5vw;
+    padding-bottom:5vh;
+
+}
+
+#circulo {
+    background-color: #192a56;
+    padding-top: 20vh;
+    padding-bottom: 20vh;
+}
+
+#in-circulo {
+    width: 25rem;
+    height: 25rem;
+    border-radius: 50%;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: auto;
+}
+
+    #in-circulo > p {
+        font-family: sans-serif;
+        color: black;
+    }
+
+#borde {
+    width: 27rem;
+    height: 27rem;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: auto;
+    border-style: dashed;
+    border-color: rgb(199, 128, 51);
+}
+
+#seccion-seguridad {
+    margin-top: 15vh;
+    margin-bottom: 15vh;
+    padding-top: 15vh;
+    padding-bottom: 15vh;
+}
+
+#form {
+    height: 70vh;
+    margin-bottom: 20vh;
+    /*background-image: url("../assets/Principal.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 130vh;
+    margin-bottom: 5vh;*/
+}
+
+
+.z-0 {
+    border-radius:20px;
+    background-color: rgba(184, 233, 148,1.0);
+    width: 50vw;
+    height: 45vh;
+}
+
+
+.z-n1 {
+    border-radius: 20px;
+    background-color: rgba(12, 36, 97,0.9);
+    width: 52vw;
+    height: 50vh;
+}
+
+.contacto {
+    width: 15vw;
+    height: 5vh;
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255,0.8);
+    font-size: 3vh;
+}
+
+
+#floatingTextarea2 {
+    height:10vh;
+  
+}
+
+
+.display{
+    font-size:2vh;
+}

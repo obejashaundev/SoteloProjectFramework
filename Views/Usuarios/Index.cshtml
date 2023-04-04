@@ -1,0 +1,163 @@
+﻿@model IEnumerable<SoteloProjectFramework.Models.tbUsuarios>
+
+@{
+	ViewBag.Title = "Usuarios";
+	Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container">
+	<div class="row mt-3">
+		<div class="col-md-12">
+			<h2>Usuarios</h2>
+		</div>
+	</div>
+	<div class="row mt-3">
+		<div class="col-md-12">
+			<button class="btn btn-primary" data-toggle="modal" data-target="#nuevoUsuario"><i class="fa fa-add"></i> Nuevo usuario</button>
+		</div>
+	</div>
+	<div class="row mt-3">
+		<div class="col-md-12">
+			<table class="table table-responsive">
+				<tr>
+					<th>
+						Rol
+					</th>
+					<th>
+						Nombre de usuario
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.Nombres)
+					</th>
+					<th>
+						Primer Apellido
+					</th>
+					<th>
+						Segundo Apellido
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.Email)
+					</th>
+					<th>
+						Contraseña
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.Estatus)
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.Eliminado)
+					</th>
+					<th>
+						<i class="fa fa-tools"></i>
+					</th>
+				</tr>
+
+				@foreach (var item in Model)
+				{
+					<tr>
+						<td>
+							@Html.DisplayFor(modelItem => item.AspNetRoles.Name)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.UserName)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.Nombres)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.PrimerApellido)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.SegundoApellido)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.Email)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.Contrasenia)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.Estatus)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.Eliminado)
+						</td>
+						<td>
+							@*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+								@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+								@Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+							<div class="btn-toolbar">
+								<div class="btn-group">
+									<button class="btn btn-info" data-toggle="modal" data-target="#informacionUsuario">
+										<i class="fa fa-info-circle"></i>
+									</button>
+									<button class="btn btn-danger" onclick="eliminarUsuario(@item.UsuarioId)">
+										<i class="fa fa-trash-alt"></i>
+									</button>
+								</div>
+							</div>
+						</td>
+					</tr>
+				}
+
+			</table>
+		</div>
+	</div>
+</div>
+
+<!-- Modal Nuevo Usuario-->
+<div class="modal fade" id="nuevoUsuario" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="nuevoUsuarioLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="nuevoUsuarioLabel">Nuevo usuario</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				...
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary">Understood</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Modal Detalles Usuario-->
+<div class="modal fade" id="informacionUsuario" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="informacionUsuarioLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="informacionUsuarioLabel">Información de usuario</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				...
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary">Understood</button>
+			</div>
+		</div>
+	</div>
+</div>
+@section scripts{
+	<script>
+		function eliminarUsuario(userId) {
+			Swal.fire({
+				title: '¿Está seguro de realizar esta operación?',
+				text: 'Los cambios realizados serán irrevocables',
+				icon: 'questin',
+				confirmButtonText: 'Si, continuar'
+			})
+		}
+		$(document).ready(function () {
+
+		})
+	</script>
+}
