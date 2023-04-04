@@ -220,6 +220,15 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ModelosGenerales.cs" />
+    <Compile Include="Models\tbCategoriasChoferes.cs">
+      <DependentUpon>DatabaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbChoferes.cs">
+      <DependentUpon>DatabaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbDetallesChoferes.cs">
+      <DependentUpon>DatabaseModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\tbMenusRoles.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
@@ -642,6 +651,10 @@
     <Content Include="Views\Buzon\Nuevo.cshtml" />
     <Content Include="Views\Buzon\Pendiente.cshtml" />
     <Content Include="Views\Buzon\Atendido.cshtml" />
+    <Content Include="Views\Conductores\Cemex.cshtml" />
+    <Content Include="Views\Conductores\CreateCemex.cshtml" />
+    <Content Include="Views\Conductores\Moctezuma.cshtml" />
+    <Content Include="Views\Conductores\CreateMoctezuma.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

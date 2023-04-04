@@ -1,33 +1,83 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="SOTELO_ASPNETModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="EntidadesSotelo" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="C__MigrationHistory" EntityType="SOTELO_ASPNETModel.C__MigrationHistory" />
+    <EntitySet Name="AspNetRoles" EntityType="SOTELO_ASPNETModel.AspNetRoles" />
+    <EntitySet Name="AspNetUserClaims" EntityType="SOTELO_ASPNETModel.AspNetUserClaims" />
+    <EntitySet Name="AspNetUserLogins" EntityType="SOTELO_ASPNETModel.AspNetUserLogins" />
+    <EntitySet Name="AspNetUsers" EntityType="SOTELO_ASPNETModel.AspNetUsers" />
+    <EntitySet Name="cMenus" EntityType="SOTELO_ASPNETModel.cMenus" />
+    <EntitySet Name="cRecursosGenerales" EntityType="SOTELO_ASPNETModel.cRecursosGenerales" />
+    <EntitySet Name="tbCategoriasChoferes" EntityType="SOTELO_ASPNETModel.tbCategoriasChoferes" />
+    <EntitySet Name="tbChoferes" EntityType="SOTELO_ASPNETModel.tbChoferes" />
+    <EntitySet Name="tbDetallesChoferes" EntityType="SOTELO_ASPNETModel.tbDetallesChoferes" />
+    <EntitySet Name="tbMenusRoles" EntityType="SOTELO_ASPNETModel.tbMenusRoles" />
+    <EntitySet Name="tbUsuarios" EntityType="SOTELO_ASPNETModel.tbUsuarios" />
+    <AssociationSet Name="FK_tbUsuarios_AspNetRoles" Association="SOTELO_ASPNETModel.FK_tbUsuarios_AspNetRoles">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="SOTELO_ASPNETModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="SOTELO_ASPNETModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbUsuarios_AspNetUsers" Association="SOTELO_ASPNETModel.FK_tbUsuarios_AspNetUsers">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbMenusRoles_cMenus" Association="SOTELO_ASPNETModel.FK_tbMenusRoles_cMenus">
+      <End Role="cMenus" EntitySet="cMenus" />
+      <End Role="tbMenusRoles" EntitySet="tbMenusRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbChoferes_tbCategoriasChoferes" Association="SOTELO_ASPNETModel.FK_tbChoferes_tbCategoriasChoferes">
+      <End Role="tbCategoriasChoferes" EntitySet="tbCategoriasChoferes" />
+      <End Role="tbChoferes" EntitySet="tbChoferes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbDetallesChoferes_tbChoferes" Association="SOTELO_ASPNETModel.FK_tbDetallesChoferes_tbChoferes">
+      <End Role="tbChoferes" EntitySet="tbChoferes" />
+      <End Role="tbDetallesChoferes" EntitySet="tbDetallesChoferes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbMenusRoles_tbUsuarios" Association="SOTELO_ASPNETModel.FK_tbMenusRoles_tbUsuarios">
+      <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+      <End Role="tbMenusRoles" EntitySet="tbMenusRoles" />
+    </AssociationSet>
+    <AssociationSet Name="AspNetUserRoles" Association="SOTELO_ASPNETModel.AspNetUserRoles">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+    </AssociationSet>
+  </EntityContainer>
   <EntityType Name="C__MigrationHistory">
     <Key>
       <PropertyRef Name="MigrationId" />
       <PropertyRef Name="ContextKey" />
     </Key>
-    <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
-    <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="ContextKey" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="Model" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+    <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="AspNetRoles">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
-    <NavigationProperty Name="tbUsuarios" Relationship="Self.FK_tbUsuarios_AspNetRoles" FromRole="AspNetRoles" ToRole="tbUsuarios" />
-    <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tbUsuarios" Relationship="SOTELO_ASPNETModel.FK_tbUsuarios_AspNetRoles" FromRole="AspNetRoles" ToRole="tbUsuarios" />
+    <NavigationProperty Name="AspNetUsers" Relationship="SOTELO_ASPNETModel.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
   </EntityType>
   <EntityType Name="AspNetUserClaims">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
     <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+    <NavigationProperty Name="AspNetUsers" Relationship="SOTELO_ASPNETModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
   </EntityType>
   <EntityType Name="AspNetUserLogins">
     <Key>
@@ -35,16 +85,16 @@
       <PropertyRef Name="ProviderKey" />
       <PropertyRef Name="UserId" />
     </Key>
-    <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-    <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+    <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUsers" Relationship="SOTELO_ASPNETModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
   </EntityType>
   <EntityType Name="AspNetUsers">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
     <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
     <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
     <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -55,11 +105,11 @@
     <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
     <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
     <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
-    <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
-    <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
-    <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
-    <NavigationProperty Name="tbUsuarios" Relationship="Self.FK_tbUsuarios_AspNetUsers" FromRole="AspNetUsers" ToRole="tbUsuarios" />
-    <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUserClaims" Relationship="SOTELO_ASPNETModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+    <NavigationProperty Name="AspNetUserLogins" Relationship="SOTELO_ASPNETModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+    <NavigationProperty Name="tbUsuarios" Relationship="SOTELO_ASPNETModel.FK_tbUsuarios_AspNetUsers" FromRole="AspNetUsers" ToRole="tbUsuarios" />
+    <NavigationProperty Name="AspNetRoles" Relationship="SOTELO_ASPNETModel.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
   </EntityType>
   <EntityType Name="cMenus">
     <Key>
@@ -67,20 +117,59 @@
     </Key>
     <Property Name="MenuId" Type="Int32" Nullable="false" />
     <Property Name="Orden" Type="Int32" Nullable="false" />
-    <Property Name="Descripcion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
     <Property Name="DependeDe" Type="Int32" Nullable="false" />
-    <Property Name="CSS" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CSS" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
     <Property Name="Estatus" Type="Boolean" Nullable="false" />
-    <NavigationProperty Name="tbMenusRoles" Relationship="Self.FK_tbMenusRoles_cMenus" FromRole="cMenus" ToRole="tbMenusRoles" />
+    <NavigationProperty Name="tbMenusRoles" Relationship="SOTELO_ASPNETModel.FK_tbMenusRoles_cMenus" FromRole="cMenus" ToRole="tbMenusRoles" />
   </EntityType>
   <EntityType Name="cRecursosGenerales">
     <Key>
       <PropertyRef Name="RecursoId" />
     </Key>
     <Property Name="RecursoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Valor" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Valor" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
     <Property Name="Estatus" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbCategoriasChoferes">
+    <Key>
+      <PropertyRef Name="CategoriaChoferId" />
+    </Key>
+    <Property Name="CategoriaChoferId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Descripción" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tbChoferes" Relationship="SOTELO_ASPNETModel.FK_tbChoferes_tbCategoriasChoferes" FromRole="tbCategoriasChoferes" ToRole="tbChoferes" />
+  </EntityType>
+  <EntityType Name="tbChoferes">
+    <Key>
+      <PropertyRef Name="ChoferId" />
+    </Key>
+    <Property Name="ChoferId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CategoriaChoferId" Type="Int32" Nullable="false" />
+    <Property Name="Nombres" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="PrimerApellido" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="SegundoApellido" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="FotoBase64" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Estatus" Type="Boolean" Nullable="false" />
+    <Property Name="Eliminado" Type="Boolean" Nullable="false" />
+    <Property Name="FechaElimino" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tbCategoriasChoferes" Relationship="SOTELO_ASPNETModel.FK_tbChoferes_tbCategoriasChoferes" FromRole="tbChoferes" ToRole="tbCategoriasChoferes" />
+    <NavigationProperty Name="tbDetallesChoferes" Relationship="SOTELO_ASPNETModel.FK_tbDetallesChoferes_tbChoferes" FromRole="tbChoferes" ToRole="tbDetallesChoferes" />
+  </EntityType>
+  <EntityType Name="tbDetallesChoferes">
+    <Key>
+      <PropertyRef Name="DetalleChoferId" />
+    </Key>
+    <Property Name="DetalleChoferId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ChoferId" Type="Int32" Nullable="false" />
+    <Property Name="Unidad" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PlacasUnidad" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DescripcionUnidad" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Edad" Type="Int32" Nullable="false" />
+    <Property Name="FechaNacimiento" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="LicenciaConducir" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="NSS" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tbChoferes" Relationship="SOTELO_ASPNETModel.FK_tbDetallesChoferes_tbChoferes" FromRole="tbDetallesChoferes" ToRole="tbChoferes" />
   </EntityType>
   <EntityType Name="tbMenusRoles">
     <Key>
@@ -90,8 +179,8 @@
     <Property Name="MenuId" Type="Int32" Nullable="false" />
     <Property Name="UsuarioId" Type="Int32" Nullable="false" />
     <Property Name="Estatus" Type="Boolean" Nullable="false" />
-    <NavigationProperty Name="cMenus" Relationship="Self.FK_tbMenusRoles_cMenus" FromRole="tbMenusRoles" ToRole="cMenus" />
-    <NavigationProperty Name="tbUsuarios" Relationship="Self.FK_tbMenusRoles_tbUsuarios" FromRole="tbMenusRoles" ToRole="tbUsuarios" />
+    <NavigationProperty Name="cMenus" Relationship="SOTELO_ASPNETModel.FK_tbMenusRoles_cMenus" FromRole="tbMenusRoles" ToRole="cMenus" />
+    <NavigationProperty Name="tbUsuarios" Relationship="SOTELO_ASPNETModel.FK_tbMenusRoles_tbUsuarios" FromRole="tbMenusRoles" ToRole="tbUsuarios" />
   </EntityType>
   <EntityType Name="tbUsuarios">
     <Key>
@@ -99,27 +188,27 @@
     </Key>
     <Property Name="UsuarioId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Guid" Type="Guid" Nullable="false" />
-    <Property Name="RolId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="UserName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="RolId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
     <Property Name="Nombres" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
     <Property Name="PrimerApellido" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
     <Property Name="SegundoApellido" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-    <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Contrasenia" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Contrasenia" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
     <Property Name="FotoBase64" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="Estatus" Type="Boolean" Nullable="false" />
     <Property Name="Eliminado" Type="Boolean" Nullable="false" />
     <Property Name="UsuarioElimino" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
     <Property Name="FechaElimino" Type="DateTime" Precision="3" />
     <Property Name="MotivoElimino" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="AspNetRoles" Relationship="Self.FK_tbUsuarios_AspNetRoles" FromRole="tbUsuarios" ToRole="AspNetRoles" />
-    <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_tbUsuarios_AspNetUsers" FromRole="tbUsuarios" ToRole="AspNetUsers" />
-    <NavigationProperty Name="tbMenusRoles" Relationship="Self.FK_tbMenusRoles_tbUsuarios" FromRole="tbUsuarios" ToRole="tbMenusRoles" />
+    <NavigationProperty Name="AspNetRoles" Relationship="SOTELO_ASPNETModel.FK_tbUsuarios_AspNetRoles" FromRole="tbUsuarios" ToRole="AspNetRoles" />
+    <NavigationProperty Name="AspNetUsers" Relationship="SOTELO_ASPNETModel.FK_tbUsuarios_AspNetUsers" FromRole="tbUsuarios" ToRole="AspNetUsers" />
+    <NavigationProperty Name="tbMenusRoles" Relationship="SOTELO_ASPNETModel.FK_tbMenusRoles_tbUsuarios" FromRole="tbUsuarios" ToRole="tbMenusRoles" />
   </EntityType>
   <Association Name="FK_tbUsuarios_AspNetRoles">
-    <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1" />
-    <End Role="tbUsuarios" Type="Self.tbUsuarios" Multiplicity="*" />
+    <End Type="SOTELO_ASPNETModel.AspNetRoles" Role="AspNetRoles" Multiplicity="1" />
+    <End Type="SOTELO_ASPNETModel.tbUsuarios" Role="tbUsuarios" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="AspNetRoles">
         <PropertyRef Name="Id" />
@@ -130,10 +219,10 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
-    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+    <End Type="SOTELO_ASPNETModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
-    <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+    <End Type="SOTELO_ASPNETModel.AspNetUserClaims" Role="AspNetUserClaims" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="AspNetUsers">
         <PropertyRef Name="Id" />
@@ -144,10 +233,10 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
-    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+    <End Type="SOTELO_ASPNETModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
-    <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+    <End Type="SOTELO_ASPNETModel.AspNetUserLogins" Role="AspNetUserLogins" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="AspNetUsers">
         <PropertyRef Name="Id" />
@@ -158,8 +247,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_tbUsuarios_AspNetUsers">
-    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
-    <End Role="tbUsuarios" Type="Self.tbUsuarios" Multiplicity="*" />
+    <End Type="SOTELO_ASPNETModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1" />
+    <End Type="SOTELO_ASPNETModel.tbUsuarios" Role="tbUsuarios" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="AspNetUsers">
         <PropertyRef Name="Id" />
@@ -170,8 +259,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_tbMenusRoles_cMenus">
-    <End Role="cMenus" Type="Self.cMenus" Multiplicity="1" />
-    <End Role="tbMenusRoles" Type="Self.tbMenusRoles" Multiplicity="*" />
+    <End Type="SOTELO_ASPNETModel.cMenus" Role="cMenus" Multiplicity="1" />
+    <End Type="SOTELO_ASPNETModel.tbMenusRoles" Role="tbMenusRoles" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="cMenus">
         <PropertyRef Name="MenuId" />
@@ -181,9 +270,33 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_tbChoferes_tbCategoriasChoferes">
+    <End Type="SOTELO_ASPNETModel.tbCategoriasChoferes" Role="tbCategoriasChoferes" Multiplicity="1" />
+    <End Type="SOTELO_ASPNETModel.tbChoferes" Role="tbChoferes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbCategoriasChoferes">
+        <PropertyRef Name="CategoriaChoferId" />
+      </Principal>
+      <Dependent Role="tbChoferes">
+        <PropertyRef Name="CategoriaChoferId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbDetallesChoferes_tbChoferes">
+    <End Type="SOTELO_ASPNETModel.tbChoferes" Role="tbChoferes" Multiplicity="1" />
+    <End Type="SOTELO_ASPNETModel.tbDetallesChoferes" Role="tbDetallesChoferes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbChoferes">
+        <PropertyRef Name="ChoferId" />
+      </Principal>
+      <Dependent Role="tbDetallesChoferes">
+        <PropertyRef Name="ChoferId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_tbMenusRoles_tbUsuarios">
-    <End Role="tbUsuarios" Type="Self.tbUsuarios" Multiplicity="1" />
-    <End Role="tbMenusRoles" Type="Self.tbMenusRoles" Multiplicity="*" />
+    <End Type="SOTELO_ASPNETModel.tbUsuarios" Role="tbUsuarios" Multiplicity="1" />
+    <End Type="SOTELO_ASPNETModel.tbMenusRoles" Role="tbMenusRoles" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="tbUsuarios">
         <PropertyRef Name="UsuarioId" />
@@ -194,46 +307,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="AspNetUserRoles">
-    <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="*" />
-    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
+    <End Type="SOTELO_ASPNETModel.AspNetRoles" Role="AspNetRoles" Multiplicity="*" />
+    <End Type="SOTELO_ASPNETModel.AspNetUsers" Role="AspNetUsers" Multiplicity="*" />
   </Association>
-  <EntityContainer Name="EntidadesSotelo" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
-    <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" />
-    <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" />
-    <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" />
-    <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" />
-    <EntitySet Name="cMenus" EntityType="Self.cMenus" />
-    <EntitySet Name="cRecursosGenerales" EntityType="Self.cRecursosGenerales" />
-    <EntitySet Name="tbMenusRoles" EntityType="Self.tbMenusRoles" />
-    <EntitySet Name="tbUsuarios" EntityType="Self.tbUsuarios" />
-    <AssociationSet Name="FK_tbUsuarios_AspNetRoles" Association="Self.FK_tbUsuarios_AspNetRoles">
-      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
-      <End Role="tbUsuarios" EntitySet="tbUsuarios" />
-    </AssociationSet>
-    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
-      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
-    </AssociationSet>
-    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
-      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
-    </AssociationSet>
-    <AssociationSet Name="FK_tbUsuarios_AspNetUsers" Association="Self.FK_tbUsuarios_AspNetUsers">
-      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-      <End Role="tbUsuarios" EntitySet="tbUsuarios" />
-    </AssociationSet>
-    <AssociationSet Name="FK_tbMenusRoles_cMenus" Association="Self.FK_tbMenusRoles_cMenus">
-      <End Role="cMenus" EntitySet="cMenus" />
-      <End Role="tbMenusRoles" EntitySet="tbMenusRoles" />
-    </AssociationSet>
-    <AssociationSet Name="FK_tbMenusRoles_tbUsuarios" Association="Self.FK_tbMenusRoles_tbUsuarios">
-      <End Role="tbUsuarios" EntitySet="tbUsuarios" />
-      <End Role="tbMenusRoles" EntitySet="tbMenusRoles" />
-    </AssociationSet>
-    <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
-      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
-      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-    </AssociationSet>
-  </EntityContainer>
 </Schema>

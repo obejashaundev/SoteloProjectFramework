@@ -32,6 +32,9 @@ namespace SoteloProjectFramework.Models
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
         public virtual DbSet<cMenus> cMenus { get; set; }
         public virtual DbSet<cRecursosGenerales> cRecursosGenerales { get; set; }
+        public virtual DbSet<tbCategoriasChoferes> tbCategoriasChoferes { get; set; }
+        public virtual DbSet<tbChoferes> tbChoferes { get; set; }
+        public virtual DbSet<tbDetallesChoferes> tbDetallesChoferes { get; set; }
         public virtual DbSet<tbMenusRoles> tbMenusRoles { get; set; }
         public virtual DbSet<tbUsuarios> tbUsuarios { get; set; }
     }

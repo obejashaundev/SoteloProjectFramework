@@ -81,6 +81,41 @@
     <Property Name="Valor" Type="varchar" MaxLength="200" Nullable="false" />
     <Property Name="Estatus" Type="bit" Nullable="false" />
   </EntityType>
+  <EntityType Name="tbCategoriasChoferes">
+    <Key>
+      <PropertyRef Name="CategoriaChoferId" />
+    </Key>
+    <Property Name="CategoriaChoferId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descripción" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbChoferes">
+    <Key>
+      <PropertyRef Name="ChoferId" />
+    </Key>
+    <Property Name="ChoferId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CategoriaChoferId" Type="int" Nullable="false" />
+    <Property Name="Nombres" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="PrimerApellido" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="SegundoApellido" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="FotoBase64" Type="text" Nullable="false" />
+    <Property Name="Estatus" Type="bit" Nullable="false" />
+    <Property Name="Eliminado" Type="bit" Nullable="false" />
+    <Property Name="FechaElimino" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="tbDetallesChoferes">
+    <Key>
+      <PropertyRef Name="DetalleChoferId" />
+    </Key>
+    <Property Name="DetalleChoferId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ChoferId" Type="int" Nullable="false" />
+    <Property Name="Unidad" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="PlacasUnidad" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="DescripcionUnidad" Type="text" />
+    <Property Name="Edad" Type="int" Nullable="false" />
+    <Property Name="FechaNacimiento" Type="datetime" Nullable="false" />
+    <Property Name="LicenciaConducir" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="NSS" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
   <EntityType Name="tbMenusRoles">
     <Key>
       <PropertyRef Name="ConfiguracionId" />
@@ -167,6 +202,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_tbChoferes_tbCategoriasChoferes">
+    <End Role="tbCategoriasChoferes" Type="Self.tbCategoriasChoferes" Multiplicity="1" />
+    <End Role="tbChoferes" Type="Self.tbChoferes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbCategoriasChoferes">
+        <PropertyRef Name="CategoriaChoferId" />
+      </Principal>
+      <Dependent Role="tbChoferes">
+        <PropertyRef Name="CategoriaChoferId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbDetallesChoferes_tbChoferes">
+    <End Role="tbChoferes" Type="Self.tbChoferes" Multiplicity="1" />
+    <End Role="tbDetallesChoferes" Type="Self.tbDetallesChoferes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbChoferes">
+        <PropertyRef Name="ChoferId" />
+      </Principal>
+      <Dependent Role="tbDetallesChoferes">
+        <PropertyRef Name="ChoferId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_tbMenusRoles_cMenus">
     <End Role="cMenus" Type="Self.cMenus" Multiplicity="1" />
     <End Role="tbMenusRoles" Type="Self.tbMenusRoles" Multiplicity="*" />
@@ -224,6 +283,9 @@
     <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="cMenus" EntityType="Self.cMenus" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="cRecursosGenerales" EntityType="Self.cRecursosGenerales" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbCategoriasChoferes" EntityType="Self.tbCategoriasChoferes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbChoferes" EntityType="Self.tbChoferes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbDetallesChoferes" EntityType="Self.tbDetallesChoferes" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbMenusRoles" EntityType="Self.tbMenusRoles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbUsuarios" EntityType="Self.tbUsuarios" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
@@ -241,6 +303,14 @@
     <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbChoferes_tbCategoriasChoferes" Association="Self.FK_tbChoferes_tbCategoriasChoferes">
+      <End Role="tbCategoriasChoferes" EntitySet="tbCategoriasChoferes" />
+      <End Role="tbChoferes" EntitySet="tbChoferes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbDetallesChoferes_tbChoferes" Association="Self.FK_tbDetallesChoferes_tbChoferes">
+      <End Role="tbChoferes" EntitySet="tbChoferes" />
+      <End Role="tbDetallesChoferes" EntitySet="tbDetallesChoferes" />
     </AssociationSet>
     <AssociationSet Name="FK_tbMenusRoles_cMenus" Association="Self.FK_tbMenusRoles_cMenus">
       <End Role="cMenus" EntitySet="cMenus" />

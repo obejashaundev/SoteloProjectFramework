@@ -91,5 +91,46 @@ namespace SoteloProjectFramework.Servicios
             }
         }
 
+        public string ConductorCEMEX
+        {
+            get
+            {
+                var oDescripcion = "ConductorCEMEX";
+                var oValor = "";
+
+                if (HttpContext.Current.Session[oDescripcion] == null)
+                {
+                    using (var db = new EntidadesSotelo())
+                    {
+                        HttpContext.Current.Session[oDescripcion] = db.cRecursosGenerales.Where(a => a.Descripcion == oDescripcion).FirstOrDefault().Valor;
+                    }
+                }
+
+                oValor = (string)HttpContext.Current.Session[oDescripcion];
+
+                return oValor;
+            }
+        }
+
+        public string ConductorMOCTEZUMA
+        {
+            get
+            {
+                var oDescripcion = "ConductorMOCTEZUMA";
+                var oValor = "";
+
+                if (HttpContext.Current.Session[oDescripcion] == null)
+                {
+                    using (var db = new EntidadesSotelo())
+                    {
+                        HttpContext.Current.Session[oDescripcion] = db.cRecursosGenerales.Where(a => a.Descripcion == oDescripcion).FirstOrDefault().Valor;
+                    }
+                }
+
+                oValor = (string)HttpContext.Current.Session[oDescripcion];
+
+                return oValor;
+            }
+        }
     }
 }
