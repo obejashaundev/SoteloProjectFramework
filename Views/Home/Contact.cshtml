@@ -1,52 +1,61 @@
 ﻿@{
-	ViewData["Title"] = "Contacto";
-	Layout = "~/Views/Shared/_Layout.cshtml";
-	<link rel="stylesheet" href="@Url.Content("~/Content/css/estilosR.css")" />
+    ViewData["Title"] = "Contacto";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/estilosR.css")" />
 }
 <div id="Sotelo">
 </div>
+
+
 <div class="container position-relative text-light" id="form">
-		<div class="z-0 position-absolute top-0 start-50 translate-middle-x p-5" style="margin-top: 10em;">
-			<div class="z-n1 position-absolute p-5 text-black">
-				<div class="position-absolute top-0 start-50 translate-middle text-center contacto">
-					<p>Contacto</p>
-				</div>
-				<h1 class="display text-light">Forma parte de nuesta satisfecha cartera de clientes</h1>
-				<p class="display text-light">Responde el formulario y pronto nos pondremos en contacto</p>
-				<div class="container text-center text-light">
-					<div class="row">
-						<div class="col">
-							<form>
-								<div class="row mb-3">
-									<label for="inputEmail3" class="col-sm-2 col-form-label">Nombre:</label>
-									<div class="col-sm-6">
-										<input type="text" class="form-control">
-									</div>
-								</div>
-								<div class="row mb-3">
-									<label for="inputPassword3" class="col-sm-2 col-form-label">E-mail:</label>
-									<div class="col-sm-6">
-										<input type="email" class="form-control">
-									</div>
-								</div>
-								<div class="row mb-3">
-									<label for="input" class="col-sm-2 col-form-label">Asunto:</label>
-									<div class="col-sm-6">
-										<div class="form-floating">
-											<textarea class="form-control" placeholder="Escriba su asunto aquí" id="floatingTextarea2"></textarea>
-											<label for="floatingTextarea2">Comments</label>
-										</div>
-									</div>
-								</div>
-								<div class="row justify-content-end">
-									<div class="col-sm-3">
-										<button class="btn btn-primary" type="button"><i class="fa-solid fa-paper-plane"></i> Enviar</button>
-									</div>
-								</div>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="z-0 position-absolute top-50 start-50 translate-middle-x p-5 " style="margin-top: 10em;">
+        <div class="z-n1 position-absolute p-5 text-black">
+
+            <div class="d-flex justify-content-center align-content-center ">
+                <div class="d-flex justify-content-center align-content-start rounded-pill w-25 " style="background-color: rgba(255, 255, 255,0.8);">
+                    <h3>Contacto</h3>
+                </div>
+            </div>
+
+           
+
+
+            <h1 class="display text-light">Forma parte de nuesta satisfecha cartera de clientes</h1>
+            <p class="display text-light">Responde el formulario y pronto nos pondremos en contacto</p>
+            <div class="container text-center text-light">
+                <div class="row">
+                    <div class="col">
+                        <form>
+                            <div class="row mb-3">
+                                <label for="inputEmail3" class="col-sm-2 col-form-label">Nombre:</label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="inputPassword3" class="col-sm-2 col-form-label">E-mail:</label>
+                                <div class="col-sm-6">
+                                    <input type="email" class="form-control">
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="input" class="col-sm-2 col-form-label">Asunto:</label>
+                                <div class="col-sm-6">
+                                    <div class="form-floating">
+                                        <textarea class="form-control" placeholder="Escriba su asunto aquí" id="floatingTextarea2"></textarea>
+                                        <label for="floatingTextarea2">Comments</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row justify-content-end">
+                                <div class="col-sm-3">
+                                    <button class="btn btn-primary" type="button"><i class="fa-solid fa-paper-plane"></i> Enviar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
