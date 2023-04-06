@@ -8,39 +8,49 @@
 
 
 <body id="Sotelo">
-    <div class="container d-flex justify-content-center" style="height:60vh;">
-        <div class="z-0 position-absolute p-5 w-25 h-50" style="margin-top: 10vh; border-radius: 40px; background: rgba(39, 60, 117,0.9);">
+    <div class="container d-flex justify-content-center" style="height:80vh;">
+        <div class="z-0 position-absolute w-25" style="height:max-content;  margin-top: 1vh; border-radius: 40px; background: rgba(39, 60, 117,0.9);">
+            
+            <div class="bg-light w-100" style="margin-left: 1vw; margin-top: 2vh; border-radius: 40px;">
+                
+                <div class="row justify-content-end">
 
-            <div class="z-1 position-absolute p-5  bg-light w-100" style="border-radius: 40px; height:55vh; ">
+                    
+                        
+                    
+                    
+                    <div class="col-md-10">
 
-                <div class="d-flex justify-content-center text-light" style="border-radius: 40px; background: rgba(39, 60, 117,1.0);">
-                    <h3>@ViewBag.Title.</h3>
-                </div>
+                        <div class="d-flex justify-content-center">
 
+                            
 
+                                <h3 class="text-light rounded-pill w-75 text-center" style="background: rgba(39, 60, 117,0.9);">@ViewBag.Title.</h3>
+                            
 
-                <div class="row">
-                    <div class="col-md-15">
-                        <section id="loginForm" >
+                        </div>
+                      
+
+                        <section id="loginForm">
 
 
                             @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
                             {
                                 @Html.AntiForgeryToken()
-                                <h4>Utilice sus credenciales para iniciar sesión.</h4>
-                                
+                                <h4 >Utilice sus credenciales para iniciar sesión.</h4>
+
                                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                                 <div class="row justify-content-center">
-                                    @Html.LabelFor(m => m.UserName, new { @class = "col-md-10 col-form-label" })
+                                    @Html.LabelFor(m => m.UserName, new { @class = "col-md-10 col-form-label " })
                                     <div class="col-md-10">
-                                        @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+                                        @Html.TextBoxFor(m => m.UserName, new { @class = "form-control rounded-pill" })
                                         @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
                                 <div class="row justify-content-center">
                                     @Html.LabelFor(m => m.Password, new { @class = "col-md-10 col-form-label" })
                                     <div class="col-md-10">
-                                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                                        @Html.PasswordFor(m => m.Password, new { @class = "form-control rounded-pill" })
                                         @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
@@ -65,22 +75,36 @@
                                     @*@Html.ActionLink("Registrarse como usuario nuevo", "Register")*@
                                 </p>
                                 @* Habilite esta opción una vez tenga la confirmación de la cuenta habilitada para la funcionalidad de restablecimiento de contraseña
-                                    <p>
-                                        @Html.ActionLink("¿Ha olvidado su contraseña?", "ForgotPassword")
-                                    </p>*@
+                <p>
+                    @Html.ActionLink("¿Ha olvidado su contraseña?", "ForgotPassword")
+                </p>*@
                             }
                         </section>
                     </div>
                     @*<div class="col-md-4">
-                            <section id="socialLoginForm">
-                                @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-                            </section>
-                        </div>*@
+            <section id="socialLoginForm">
+                @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+            </section>
+        </div>*@
                 </div>
-
             </div>
-
         </div>
+
+
+
+
+       
+        
+            
+        
+
+
+
+        
+
+
+
+
 
     </div>
 
