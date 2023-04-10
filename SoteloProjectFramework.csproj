@@ -1071,6 +1071,8 @@
     <Content Include="Views\Conductores\Info.cshtml" />
     <Content Include="Views\Viajes\UpdateDiesel.cshtml" />
     <Content Include="Views\Viajes\UpdateExpense.cshtml" />
+    <Content Include="Views\Usuarios\Create.cshtml" />
+    <Content Include="Views\Usuarios\ConfigPermissions.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

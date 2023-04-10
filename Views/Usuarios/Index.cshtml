@@ -13,7 +13,7 @@
 	</div>
 	<div class="row mt-3">
 		<div class="col-md-12">
-			<button class="btn btn-primary" data-toggle="modal" data-target="#nuevoUsuario"><i class="fa fa-add"></i> Nuevo usuario</button>
+			<a href="@Url.Action("Create")" class="btn btn-primary"><i class="fa fa-add"></i> Nuevo usuario</a>
 		</div>
 	</div>
 	<div class="row mt-3">
@@ -24,16 +24,16 @@
 						Rol
 					</th>
 					<th>
-						Nombre de usuario
+						Usuario
 					</th>
 					<th>
 						@Html.DisplayNameFor(model => model.Nombres)
 					</th>
 					<th>
-						Primer Apellido
+						Apellido 1
 					</th>
 					<th>
-						Segundo Apellido
+						Apellido 2
 					</th>
 					<th>
 						@Html.DisplayNameFor(model => model.Email)
@@ -88,9 +88,12 @@
 								@Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
 							<div class="btn-toolbar">
 								<div class="btn-group">
-									<button class="btn btn-info" data-toggle="modal" data-target="#informacionUsuario">
+									<a class="btn btn-info">
 										<i class="fa fa-info-circle"></i>
-									</button>
+									</a>
+									<a class="btn btn-info" href="@Url.Action("ConfigPermissions", new { UsuarioId = item.UsuarioId })">
+										<i class="fa fa-low-vision"></i>
+									</a>
 									<button class="btn btn-danger" onclick="eliminarUsuario(@item.UsuarioId)">
 										<i class="fa fa-trash-alt"></i>
 									</button>
@@ -105,54 +108,13 @@
 	</div>
 </div>
 
-<!-- Modal Nuevo Usuario-->
-<div class="modal fade" id="nuevoUsuario" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="nuevoUsuarioLabel" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title" id="nuevoUsuarioLabel">Nuevo usuario</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			<div class="modal-body">
-				...
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary">Understood</button>
-			</div>
-		</div>
-	</div>
-</div>
-
-<!-- Modal Detalles Usuario-->
-<div class="modal fade" id="informacionUsuario" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="informacionUsuarioLabel" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title" id="informacionUsuarioLabel">Información de usuario</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			<div class="modal-body">
-				...
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary">Understood</button>
-			</div>
-		</div>
-	</div>
-</div>
 @section scripts{
 	<script>
 		function eliminarUsuario(userId) {
 			Swal.fire({
 				title: '¿Está seguro de realizar esta operación?',
 				text: 'Los cambios realizados serán irrevocables',
-				icon: 'questin',
+				icon: 'question',
 				confirmButtonText: 'Si, continuar'
 			})
 		}

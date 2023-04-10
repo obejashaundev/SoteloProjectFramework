@@ -33,6 +33,7 @@ namespace SoteloProjectFramework.Models
         public dynamic Data { get { return _Data; } set { _Data = value; } }
     }
 
+
     public class ModeloExtendidoChofer
     {
         public tbChoferes Chofer { get; set; }

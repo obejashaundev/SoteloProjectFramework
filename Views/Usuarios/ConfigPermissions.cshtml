@@ -1,0 +1,61 @@
+﻿@model IEnumerable<SoteloProjectFramework.Models.tbMenusRoles>
+
+@{
+	ViewBag.Title = "Permisos";
+	Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Configuración de permisos</h2>
+<hr />
+<table class="table">
+	<tr>
+		<th>
+			Menu
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.Estatus)
+		</th>
+	</tr>
+
+	@foreach (var item in Model)
+	{
+		<tr mid="@item.MenuId" uid="@item.UsuarioId">
+			@Html.HiddenFor(modelItem => item.UsuarioId)
+			<td>
+				@Html.DisplayFor(modelItem => item.cMenus.Descripcion)
+			</td>
+			<td>
+				@Html.EditorFor(modelItem => item.Estatus)
+			</td>
+		</tr>
+	}
+
+</table>
+@section scripts{
+	<script>
+		$(document).ready(function () {
+			$('.check-box').on('change', function () {
+				let value = $(this).prop('checked')
+				let mid = $(this).parent().parent().attr('mid')
+				let uid = $(this).parent().parent().attr('uid')
+				$.ajax({
+					url: `@Url.Action("UpdatePermission")`,
+					type: 'POST',
+					data: {
+						Estatus: value,
+						MenuId: mid,
+						UsuarioId: uid
+					},
+					success: function (Response) {
+						if (Response.Success) {
+							Swal.fire({
+								title: 'Permiso actualizado',
+								icon: 'success'
+							})
+						}
+					}
+				})
+			})
+		})
+	</script>
+}
