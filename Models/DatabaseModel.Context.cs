@@ -34,8 +34,10 @@ namespace SoteloProjectFramework.Models
         public virtual DbSet<cRecursosGenerales> cRecursosGenerales { get; set; }
         public virtual DbSet<tbCategoriasChoferes> tbCategoriasChoferes { get; set; }
         public virtual DbSet<tbChoferes> tbChoferes { get; set; }
+        public virtual DbSet<tbContabilidadViaje> tbContabilidadViaje { get; set; }
         public virtual DbSet<tbDetallesChoferes> tbDetallesChoferes { get; set; }
         public virtual DbSet<tbMenusRoles> tbMenusRoles { get; set; }
         public virtual DbSet<tbUsuarios> tbUsuarios { get; set; }
+        public virtual DbSet<tbViajes> tbViajes { get; set; }
     }
 }

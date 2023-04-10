@@ -12,11 +12,13 @@
         <EntityTypeShape EntityType="SOTELO_ASPNETModel.AspNetUsers" Width="1.5" PointX="3" PointY="9.625" />
         <EntityTypeShape EntityType="SOTELO_ASPNETModel.cMenus" Width="1.5" PointX="8.25" PointY="3.375" />
         <EntityTypeShape EntityType="SOTELO_ASPNETModel.cRecursosGenerales" Width="1.5" PointX="2.75" PointY="0.75" />
-        <EntityTypeShape EntityType="SOTELO_ASPNETModel.tbCategoriasChoferes" Width="1.5" PointX="10.75" PointY="1.75" />
-        <EntityTypeShape EntityType="SOTELO_ASPNETModel.tbChoferes" Width="1.5" PointX="13" PointY="1" />
-        <EntityTypeShape EntityType="SOTELO_ASPNETModel.tbDetallesChoferes" Width="1.5" PointX="15.25" PointY="1.125" />
+        <EntityTypeShape EntityType="SOTELO_ASPNETModel.tbCategoriasChoferes" Width="1.5" PointX="10.75" PointY="14.75" />
+        <EntityTypeShape EntityType="SOTELO_ASPNETModel.tbChoferes" Width="1.5" PointX="13" PointY="13.875" />
+        <EntityTypeShape EntityType="SOTELO_ASPNETModel.tbContabilidadViaje" Width="1.5" PointX="16" PointY="10.25" />
+        <EntityTypeShape EntityType="SOTELO_ASPNETModel.tbDetallesChoferes" Width="1.5" PointX="15.25" PointY="14" />
         <EntityTypeShape EntityType="SOTELO_ASPNETModel.tbMenusRoles" Width="1.5" PointX="10.5" PointY="8.5" />
         <EntityTypeShape EntityType="SOTELO_ASPNETModel.tbUsuarios" Width="1.5" PointX="8.25" PointY="7.25" />
+        <EntityTypeShape EntityType="SOTELO_ASPNETModel.tbViajes" Width="1.5" PointX="18.25" PointY="14.125" />
         <AssociationConnector Association="SOTELO_ASPNETModel.FK_tbUsuarios_AspNetRoles" />
         <AssociationConnector Association="SOTELO_ASPNETModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="SOTELO_ASPNETModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
@@ -24,6 +26,8 @@
         <AssociationConnector Association="SOTELO_ASPNETModel.FK_tbMenusRoles_cMenus" />
         <AssociationConnector Association="SOTELO_ASPNETModel.FK_tbChoferes_tbCategoriasChoferes" />
         <AssociationConnector Association="SOTELO_ASPNETModel.FK_tbDetallesChoferes_tbChoferes" />
+        <AssociationConnector Association="SOTELO_ASPNETModel.FK_tbViajes_tbChoferes" />
+        <AssociationConnector Association="SOTELO_ASPNETModel.FK_tbViajes_tbContabilidadViaje" />
         <AssociationConnector Association="SOTELO_ASPNETModel.FK_tbMenusRoles_tbUsuarios" />
         <AssociationConnector Association="SOTELO_ASPNETModel.AspNetUserRoles" />
       </Diagram>

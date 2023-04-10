@@ -81,7 +81,7 @@
     <EntitySetMapping Name="tbCategoriasChoferes">
       <EntityTypeMapping TypeName="SOTELO_ASPNETModel.tbCategoriasChoferes">
         <MappingFragment StoreEntitySet="tbCategoriasChoferes">
-          <ScalarProperty Name="Descripción" ColumnName="Descripción" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
           <ScalarProperty Name="CategoriaChoferId" ColumnName="CategoriaChoferId" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -92,7 +92,7 @@
           <ScalarProperty Name="FechaElimino" ColumnName="FechaElimino" />
           <ScalarProperty Name="Eliminado" ColumnName="Eliminado" />
           <ScalarProperty Name="Estatus" ColumnName="Estatus" />
-          <ScalarProperty Name="FotoBase64" ColumnName="FotoBase64" />
+          <ScalarProperty Name="Imagen" ColumnName="Imagen" />
           <ScalarProperty Name="SegundoApellido" ColumnName="SegundoApellido" />
           <ScalarProperty Name="PrimerApellido" ColumnName="PrimerApellido" />
           <ScalarProperty Name="Nombres" ColumnName="Nombres" />
@@ -101,11 +101,25 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="tbContabilidadViaje">
+      <EntityTypeMapping TypeName="SOTELO_ASPNETModel.tbContabilidadViaje">
+        <MappingFragment StoreEntitySet="tbContabilidadViaje">
+          <ScalarProperty Name="Ganancia" ColumnName="Ganancia" />
+          <ScalarProperty Name="SalarioNeto" ColumnName="SalarioNeto" />
+          <ScalarProperty Name="Gastos" ColumnName="Gastos" />
+          <ScalarProperty Name="SalarioBrutoChofer" ColumnName="SalarioBrutoChofer" />
+          <ScalarProperty Name="Importe" ColumnName="Importe" />
+          <ScalarProperty Name="Diesel" ColumnName="Diesel" />
+          <ScalarProperty Name="ContabilidadViajeId" ColumnName="ContabilidadViajeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="tbDetallesChoferes">
       <EntityTypeMapping TypeName="SOTELO_ASPNETModel.tbDetallesChoferes">
         <MappingFragment StoreEntitySet="tbDetallesChoferes">
           <ScalarProperty Name="NSS" ColumnName="NSS" />
           <ScalarProperty Name="LicenciaConducir" ColumnName="LicenciaConducir" />
+          <ScalarProperty Name="FechaNacimientoStr" ColumnName="FechaNacimientoStr" />
           <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
           <ScalarProperty Name="Edad" ColumnName="Edad" />
           <ScalarProperty Name="DescripcionUnidad" ColumnName="DescripcionUnidad" />
@@ -145,6 +159,20 @@
           <ScalarProperty Name="RolId" ColumnName="RolId" />
           <ScalarProperty Name="Guid" ColumnName="Guid" />
           <ScalarProperty Name="UsuarioId" ColumnName="UsuarioId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbViajes">
+      <EntityTypeMapping TypeName="SOTELO_ASPNETModel.tbViajes">
+        <MappingFragment StoreEntitySet="tbViajes">
+          <ScalarProperty Name="LugarDestino" ColumnName="LugarDestino" />
+          <ScalarProperty Name="LugarOrigen" ColumnName="LugarOrigen" />
+          <ScalarProperty Name="FechaStr" ColumnName="FechaStr" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="Folio" ColumnName="Folio" />
+          <ScalarProperty Name="ContabilidadViajeId" ColumnName="ContabilidadViajeId" />
+          <ScalarProperty Name="ChoferId" ColumnName="ChoferId" />
+          <ScalarProperty Name="ViajeId" ColumnName="ViajeId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

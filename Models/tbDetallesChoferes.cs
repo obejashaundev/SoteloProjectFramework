@@ -21,6 +21,7 @@ namespace SoteloProjectFramework.Models
         public string DescripcionUnidad { get; set; }
         public int Edad { get; set; }
         public System.DateTime FechaNacimiento { get; set; }
+        public string FechaNacimientoStr { get; set; }
         public string LicenciaConducir { get; set; }
         public string NSS { get; set; }
     

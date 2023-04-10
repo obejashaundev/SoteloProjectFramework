@@ -86,7 +86,7 @@
       <PropertyRef Name="CategoriaChoferId" />
     </Key>
     <Property Name="CategoriaChoferId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Descripción" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
   </EntityType>
   <EntityType Name="tbChoferes">
     <Key>
@@ -97,10 +97,22 @@
     <Property Name="Nombres" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="PrimerApellido" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="SegundoApellido" Type="varchar" MaxLength="100" Nullable="false" />
-    <Property Name="FotoBase64" Type="text" Nullable="false" />
+    <Property Name="Imagen" Type="image" />
     <Property Name="Estatus" Type="bit" Nullable="false" />
     <Property Name="Eliminado" Type="bit" Nullable="false" />
     <Property Name="FechaElimino" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="tbContabilidadViaje">
+    <Key>
+      <PropertyRef Name="ContabilidadViajeId" />
+    </Key>
+    <Property Name="ContabilidadViajeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Diesel" Type="numeric" Precision="18" Scale="2" />
+    <Property Name="Importe" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="SalarioBrutoChofer" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Gastos" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="SalarioNeto" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Ganancia" Type="numeric" Precision="18" Scale="2" Nullable="false" />
   </EntityType>
   <EntityType Name="tbDetallesChoferes">
     <Key>
@@ -113,6 +125,7 @@
     <Property Name="DescripcionUnidad" Type="text" />
     <Property Name="Edad" Type="int" Nullable="false" />
     <Property Name="FechaNacimiento" Type="datetime" Nullable="false" />
+    <Property Name="FechaNacimientoStr" Type="varchar" MaxLength="100" />
     <Property Name="LicenciaConducir" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="NSS" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
@@ -145,6 +158,19 @@
     <Property Name="UsuarioElimino" Type="varchar" MaxLength="150" />
     <Property Name="FechaElimino" Type="datetime" />
     <Property Name="MotivoElimino" Type="varchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="tbViajes">
+    <Key>
+      <PropertyRef Name="ViajeId" />
+    </Key>
+    <Property Name="ViajeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ChoferId" Type="int" Nullable="false" />
+    <Property Name="ContabilidadViajeId" Type="int" Nullable="false" />
+    <Property Name="Folio" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Fecha" Type="datetime" Nullable="false" />
+    <Property Name="FechaStr" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="LugarOrigen" Type="text" Nullable="false" />
+    <Property Name="LugarDestino" Type="text" Nullable="false" />
   </EntityType>
   <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
     <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
@@ -274,6 +300,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_tbViajes_tbChoferes">
+    <End Role="tbChoferes" Type="Self.tbChoferes" Multiplicity="1" />
+    <End Role="tbViajes" Type="Self.tbViajes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbChoferes">
+        <PropertyRef Name="ChoferId" />
+      </Principal>
+      <Dependent Role="tbViajes">
+        <PropertyRef Name="ChoferId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbViajes_tbContabilidadViaje">
+    <End Role="tbContabilidadViaje" Type="Self.tbContabilidadViaje" Multiplicity="1" />
+    <End Role="tbViajes" Type="Self.tbViajes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbContabilidadViaje">
+        <PropertyRef Name="ContabilidadViajeId" />
+      </Principal>
+      <Dependent Role="tbViajes">
+        <PropertyRef Name="ContabilidadViajeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="SOTELO_ASPNETModelStoreContainer">
     <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
@@ -285,9 +335,11 @@
     <EntitySet Name="cRecursosGenerales" EntityType="Self.cRecursosGenerales" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbCategoriasChoferes" EntityType="Self.tbCategoriasChoferes" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbChoferes" EntityType="Self.tbChoferes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbContabilidadViaje" EntityType="Self.tbContabilidadViaje" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbDetallesChoferes" EntityType="Self.tbDetallesChoferes" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbMenusRoles" EntityType="Self.tbMenusRoles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbUsuarios" EntityType="Self.tbUsuarios" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbViajes" EntityType="Self.tbViajes" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
@@ -327,6 +379,14 @@
     <AssociationSet Name="FK_tbUsuarios_AspNetUsers" Association="Self.FK_tbUsuarios_AspNetUsers">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbViajes_tbChoferes" Association="Self.FK_tbViajes_tbChoferes">
+      <End Role="tbChoferes" EntitySet="tbChoferes" />
+      <End Role="tbViajes" EntitySet="tbViajes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbViajes_tbContabilidadViaje" Association="Self.FK_tbViajes_tbContabilidadViaje">
+      <End Role="tbContabilidadViaje" EntitySet="tbContabilidadViaje" />
+      <End Role="tbViajes" EntitySet="tbViajes" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

@@ -1,0 +1,41 @@
+﻿@model IEnumerable<SoteloProjectFramework.Models.tbViajes>
+
+@{
+    ViewBag.Title = "Viajes";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    string Hoy = ViewBag.Hoy;
+}
+
+<h2>Viajes del día</h2>
+<h3>@Hoy</h3>
+
+<p>
+    @Html.ActionLink("Nuevo Viaje", "Create")
+</p>
+<table class="table">
+    <tr>
+		<th>Chofer</th>
+        <th>Origen</th>
+        <th>Destino</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+		<td>
+			@Html.DisplayFor(modelItem => item.tbChoferes.Nombres) @Html.DisplayFor(modelItem => item.tbChoferes.PrimerApellido) @Html.DisplayFor(modelItem => item.tbChoferes.SegundoApellido)
+		</td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LugarOrigen)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LugarDestino)
+        </td>
+        @*<td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>*@
+    </tr>
+}
+
+</table>

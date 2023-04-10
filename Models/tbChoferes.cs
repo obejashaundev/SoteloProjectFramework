@@ -18,6 +18,7 @@ namespace SoteloProjectFramework.Models
         public tbChoferes()
         {
             this.tbDetallesChoferes = new HashSet<tbDetallesChoferes>();
+            this.tbViajes = new HashSet<tbViajes>();
         }
     
         public int ChoferId { get; set; }
@@ -25,7 +26,7 @@ namespace SoteloProjectFramework.Models
         public string Nombres { get; set; }
         public string PrimerApellido { get; set; }
         public string SegundoApellido { get; set; }
-        public string FotoBase64 { get; set; }
+        public byte[] Imagen { get; set; }
         public bool Estatus { get; set; }
         public bool Eliminado { get; set; }
         public string FechaElimino { get; set; }
@@ -33,5 +34,7 @@ namespace SoteloProjectFramework.Models
         public virtual tbCategoriasChoferes tbCategoriasChoferes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbDetallesChoferes> tbDetallesChoferes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbViajes> tbViajes { get; set; }
     }
 }

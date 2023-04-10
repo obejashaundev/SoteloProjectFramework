@@ -38,4 +38,11 @@ namespace SoteloProjectFramework.Models
         public tbChoferes Chofer { get; set; }
         public tbDetallesChoferes DetalleChofer { get; set; }
     }
+
+    public class ModeloExtendidoViaje
+    {
+        public tbViajes Viajes { get; set; }
+        public tbChoferes Chofer { get; set; }
+        public tbContabilidadViaje Contabilidad { get; set; }
+    }
 }

@@ -33,17 +33,19 @@ namespace SoteloProjectFramework
                       "~/Content/site.css",
                       "~/Content/css/sb-admin-2.css",
                       "~/Content/lib/datatables/dataTables.bootstrap4.css",
-                      "~/Content/lib/dist/sweetalert2.css",
+                      "~/Content/lib/sweetalert2/dist/sweetalert2.css",
                       "~/Content/lib/font-awesome/css/all.css",
-                      "~/Content/lib/font-awesome/css/fontawesome.css"));
+                      "~/Content/lib/font-awesome/css/fontawesome.css",
+                      "~/Content/lib/select2/dist/css/select2.css"));
             
             bundles.Add(new Bundle("~/bundles/libraries").Include(
                         "~/Content/js/sb-admin-2.js",
-                        "~/Content/lib/Chart.js/chart.js",
-                        "~/Content/lib/datatables/dataTables.bootstrap4.js",
-                        "~/Content/lib/dist/sweetalert2.js",
+                        "~/Content/lib/Chart.js/chart.umd.js",
+                        "~/Content/lib/datatables.net/jquery.dataTables.js",
+                        "~/Content/lib/sweetalert2/dist/sweetalert2.js",
                         "~/Content/lib/font-awesome/js/all.js",
-                        "~/Content/lib/font-awesome/js/fontawesome.js"));
+                        "~/Content/lib/font-awesome/js/fontawesome.js",
+                        "~/Content/lib/select2/dist/js/select2.js"));
         }
     }
 }

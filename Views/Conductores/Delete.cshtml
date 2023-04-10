@@ -1,0 +1,36 @@
+﻿@model SoteloProjectFramework.Models.ModeloExtendidoChofer
+
+@{
+	ViewBag.Title = "Eliminar";
+	Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div>
+	<h3>Eliminar</h3>
+	<h4>¿Está seguro de eliminar al chofer?</h4>
+	<p class="text-muted">La eliminación no será completa si no parcial, inhabilitando al chofer</p>
+	<hr />
+	<dl class="dl-horizontal">
+	</dl>
+	<div class="form-group">
+		@Html.Label("Foto", htmlAttributes: new { @class = "control-label col-md-2" })
+		<div class="col-md-10">
+			<img src="@Url.Action("RetrieveImage")?ChoferId=@Model.Chofer.ChoferId" class="card-img-top" onerror="this.src='@Url.Content("~/Content/img/usuario.png")'" alt="..." style="width: 10em; height: 10em;">
+		</div>
+	</div>
+	<div class="form-group">
+		@*@Html.Label("Nombre completo", htmlAttributes: new { @class = "control-label col-md-2" })*@
+		<div class="col-md-10">
+			@Html.DisplayFor(model => model.Chofer.Nombres) @Html.DisplayFor(model => model.Chofer.PrimerApellido) @Html.DisplayFor(model => model.Chofer.SegundoApellido)
+		</div>
+	</div>
+	@using (Html.BeginForm())
+	{
+		@Html.AntiForgeryToken()
+		@Html.HiddenFor(model => model.Chofer.ChoferId)
+		@Html.HiddenFor(model => model.Chofer.tbCategoriasChoferes.Descripcion)
+		<div class="form-actions no-color">
+			<a href="@Url.Action("Details")?ChoferId=@Model.Chofer.ChoferId" class="btn btn-link">Cancelar</a>| <input type="submit" value="Si, Eliminar" class="btn btn-danger" />
+		</div>
+	}
+</div>

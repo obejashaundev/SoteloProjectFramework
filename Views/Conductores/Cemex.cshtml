@@ -1,27 +1,51 @@
 ﻿@model IEnumerable<SoteloProjectFramework.Models.tbChoferes>
 
 @{
-    ViewBag.Title = "Cemex";
-    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+	ViewBag.Title = "Cemex";
+	Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
 <h2>Conductores de CEMEX</h2>
 <p>
-    <a href="@Url.Action("CreateCemex", "Conductores")" class="btn btn-primary"><i class="fa fa-add"></i> Nuevo Chofer</a>
+	<a href="@Url.Action("Create", "Conductores")" class="btn btn-primary"><i class="fa fa-add"></i> Nuevo Chofer</a>
 </p>
 <div class="container-fluid">
 	<div class="row row-cols-1 row-cols-md-5">
 		@foreach (var item in Model)
-        {
+		{
 			<div class="col mb-4">
-				<div class="card">
-					<img src="@item.FotoBase64" class="card-img-top" alt="...">
+				<div class="card" id="@item.ChoferId" style="cursor: pointer;" onclick="VerChofer(this);">
+					<img src="@Url.Content("~/Content/img/usuario.png")" class="card-img-top" alt="...">
 					<div class="card-body">
 						<h5 class="card-title">@item.Nombres @item.PrimerApellido @item.SegundoApellido</h5>
 						<p class="card-text"></p>
 					</div>
+					@*<div class="card-footer">
+							<div class="dropdown">
+								<button class="btn btn-light btn-block dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+									Acciones
+								</button>
+								<div class="dropdown-menu">
+									<a href="@Url.Action("Details", "Conductores", new { ChoferId = item.ChoferId })" class="dropdown-item">Datos Personales</a>
+									<a href="@Url.Action("HistoryDriver", "Viajes", new { ChoferId = item.ChoferId })" class="dropdown-item">Historial</a>
+									<a href="@Url.Action("NewRegistry", "Viajes", new { ChoferId = item.ChoferId })" class="dropdown-item">Nuevo Registro</a>
+									<a href="@Url.Action("Delete", "Conductores", new { ChoferId = item.ChoferId })" class="dropdown-item">Eliminar</a>
+								</div>
+							</div>
+						</div>*@
 				</div>
 			</div>
-        }
+		}
 	</div>
 </div>
+
+@section scripts
+{
+	<script>
+		function VerChofer(e) {
+			let id = $(e).attr('id')
+			$('.Espere').show()
+			window.location = `@Url.Action("Info")?ChoferId=${id}`
+		}
+	</script>
+}
