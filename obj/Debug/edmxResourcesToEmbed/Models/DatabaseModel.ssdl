@@ -61,6 +61,13 @@
     <Property Name="AccessFailedCount" Type="int" Nullable="false" />
     <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
   </EntityType>
+  <EntityType Name="cBuzonEstatus">
+    <Key>
+      <PropertyRef Name="BuzonEstatusId" />
+    </Key>
+    <Property Name="BuzonEstatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
   <EntityType Name="cMenus">
     <Key>
       <PropertyRef Name="MenuId" />
@@ -80,6 +87,18 @@
     <Property Name="Descripcion" Type="varchar" MaxLength="200" Nullable="false" />
     <Property Name="Valor" Type="varchar" MaxLength="200" Nullable="false" />
     <Property Name="Estatus" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbBuzon">
+    <Key>
+      <PropertyRef Name="BuzonId" />
+    </Key>
+    <Property Name="BuzonId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BuzonEstatusId" Type="int" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Asunto" Type="text" Nullable="false" />
+    <Property Name="Estatus" Type="bit" Nullable="false" />
+    <Property Name="Eliminado" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="tbCategoriasChoferes">
     <Key>
@@ -228,6 +247,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_tbBuzon_cBuzonEstatus">
+    <End Role="cBuzonEstatus" Type="Self.cBuzonEstatus" Multiplicity="1" />
+    <End Role="tbBuzon" Type="Self.tbBuzon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cBuzonEstatus">
+        <PropertyRef Name="BuzonEstatusId" />
+      </Principal>
+      <Dependent Role="tbBuzon">
+        <PropertyRef Name="BuzonEstatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_tbChoferes_tbCategoriasChoferes">
     <End Role="tbCategoriasChoferes" Type="Self.tbCategoriasChoferes" Multiplicity="1" />
     <End Role="tbChoferes" Type="Self.tbChoferes" Multiplicity="*" />
@@ -331,8 +362,10 @@
     <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="cBuzonEstatus" EntityType="Self.cBuzonEstatus" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="cMenus" EntityType="Self.cMenus" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="cRecursosGenerales" EntityType="Self.cRecursosGenerales" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbBuzon" EntityType="Self.tbBuzon" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbCategoriasChoferes" EntityType="Self.tbCategoriasChoferes" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbChoferes" EntityType="Self.tbChoferes" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tbContabilidadViaje" EntityType="Self.tbContabilidadViaje" Schema="dbo" store:Type="Tables" />
@@ -355,6 +388,10 @@
     <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbBuzon_cBuzonEstatus" Association="Self.FK_tbBuzon_cBuzonEstatus">
+      <End Role="cBuzonEstatus" EntitySet="cBuzonEstatus" />
+      <End Role="tbBuzon" EntitySet="tbBuzon" />
     </AssociationSet>
     <AssociationSet Name="FK_tbChoferes_tbCategoriasChoferes" Association="Self.FK_tbChoferes_tbCategoriasChoferes">
       <End Role="tbCategoriasChoferes" EntitySet="tbCategoriasChoferes" />

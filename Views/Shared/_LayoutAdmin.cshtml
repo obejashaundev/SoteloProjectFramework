@@ -12,6 +12,26 @@
 
 	@Styles.Render("~/Content/cssAdmin")
 	@Scripts.Render("~/bundles/modernizr")
+	<style>
+		.bg-gradient-primary {
+			background-color: #182840 !important;
+			background-image: none !important;
+			background-size: cover;
+		}
+		.sidebar .sidebar-brand {
+			background-color: lightgray !important;
+			color: black !important;
+		}
+		.sidebar .sidebar-heading {
+			background-color: darkgray !important;
+		}
+		.sidebar .nav-item {
+			background-color: darkgray !important;
+		}
+		#topNav {
+			background-color: #182840 !important;
+		}
+	</style>
 </head>
 <body>
 	<div id="Espere" class="Espere"></div>
@@ -20,7 +40,7 @@
 
 			<!-- Sidebar - Brand -->
 			<li>
-				<a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+				<a class="sidebar-brand d-flex align-items-center justify-content-center" href="@Url.Action("Index", "Admin")">
 					<div class="sidebar-brand-icon">
 						<img src="@Url.Content("~/Content/img/logo-of.svg")" alt="Logo" style="width: 4em;" />
 					</div>
@@ -41,7 +61,7 @@
 			</li>
 
 			<!-- Divider -->
-			<hr class="sidebar-divider">
+			@*<hr class="sidebar-divider">*@
 
 			<!-- Heading -->
 			<li class="sidebar-heading">
@@ -159,11 +179,11 @@
 				Administración
 			</li>-->
 			<!-- Nav Item - Pages Collapse Menu -->
-			<li class="nav-item">
-				<a class="nav-link" href="@Url.Action("Index", "Usuarios")">
+			@*<li class="nav-item">*@
+				@*<a class="nav-link" href="@Url.Action("Index", "Usuarios")">
 					<img class="img-profile rounded-circle" style="width: 1em; height:1em;" src="@Url.Content("~/Content/img/usuario.png")">
 					<span>Usuarios</span>
-				</a>
+				</a>*@
 				@*<div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
 						<div class="bg-white py-2 collapse-inner rounded">
 							<a class="collapse-item" href="blank.html">
@@ -178,7 +198,7 @@
 							</a>
 						</div>
 					</div>*@
-			</li>
+			@*</li>*@
 
 			<!-- Divider -->
 			<hr class="sidebar-divider d-none d-md-block">
@@ -200,7 +220,7 @@
 			<div id="content">
 
 				<!-- Topbar -->
-				<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+				<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow" id="topNav">
 
 					<!-- Sidebar Toggle (Topbar) -->
 					<button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">

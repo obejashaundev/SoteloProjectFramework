@@ -193,6 +193,9 @@
     <Compile Include="Models\AspNetUsers.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\cBuzonEstatus.cs">
+      <DependentUpon>DatabaseModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\cMenus.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
@@ -220,6 +223,9 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ModelosGenerales.cs" />
+    <Compile Include="Models\tbBuzon.cs">
+      <DependentUpon>DatabaseModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\tbCategoriasChoferes.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>

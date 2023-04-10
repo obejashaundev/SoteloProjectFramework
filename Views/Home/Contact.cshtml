@@ -1,76 +1,80 @@
-﻿@{
-    ViewData["Title"] = "Contacto";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-    <link rel="stylesheet" href="@Url.Content("~/Content/css/estilosR.css")" />
+﻿@model SoteloProjectFramework.Models.tbBuzon
+@{
+	ViewData["Title"] = "Contacto";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+	string IsSucceded = ((bool)ViewBag.Success) ? "true" : "false";
+	<link rel="stylesheet" href="@Url.Content("~/Content/css/estilosR.css")" />
 }
 <div id="Sotelo">
 </div>
 
+@using (Html.BeginForm())
+{
+	@Html.AntiForgeryToken()
+	<div class="position-relative" style="height:100vh;">
+		<div class="container mt-5 w-50 pt-5 rounded" style="background-color: rgba(186, 220, 88,1.0); height: 60ex;">
+			<div class="container p-5 ml-5 rounded" style=" background-color: rgba(39, 60, 117,1.0);">
+				<div class="container d-flex justify-content-center rounded bg-light rounded w-25 contacto">
+					Contacto
+				</div>
+				<div class="text-light text-wrap letras">
+					<p class="overflow-wrap">Forma parte de nuestra satisfecha cartera de clientes</p>
+					<p class="overflow-wrap">Responde al formulario y pronto nos pondremos en contacto</p>
+				</div>
+				@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+				<div class="form-group">
+					@Html.LabelFor(model => model.Nombre, new { @class = "control-label text-light" }):
+					@Html.TextBoxFor(model => model.Nombre, new { @class = "form-control rounded" })
+					@Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+				</div>
 
-<div class="position-relative" style="height:100vh;">
-
-
-    <div class="container mt-5 w-50 pt-5 rounded" style="background-color: rgba(186, 220, 88,1.0); height: 60ex;">
-        <div class="container p-5 ml-5 rounded" style=" background-color: rgba(39, 60, 117,1.0);">
-
-            <div class="container d-flex justify-content-center rounded bg-light rounded w-25 contacto">
-
-                Contacto
-            </div>
-
-            <div class="text-light text-wrap letras">
-
-                <p class="overflow-wrap">Forma parte de nuestra satisfecha cartera de clientes</p>
-                <p class="overflow-wrap">Responde al formulario y pronto nos pondremos en contacto</p>
-            </div>
-
-            <form >
-                <div class="form-group">
-                    <label for="exampleInputName1" class="text-light">Nombre:</label>
-                    <input type="text" class="form-control rounded" id="exampleInputName1" aria-describedby="emailHelp">
-
-                </div>
-
-                <div class="form-group">
-                    <label for="exampleInputEmail1" class="text-light">Email</label>
-                    <input type="email" class="form-control rounded" id="exampleInputPassword1">
-                </div>
-                <div class="form-group">
-                    <label for="exampleFormControlTextarea1" class="text-light">Asunto</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Descripcion"></textarea>
-                </div>
-                <div class="form-group">
-                    <div class="row justify-content-end">
-                        <div>
-                            <button class="btn btn-primary" type="button"><i class="fa-solid fa-paper-plane"></i> Enviar</button>
-                        </div>
-                    </div>
-                </div>
-
-            </form>
-
-        </div>
-
-    </div>
-
-
-
-</div>
-
-
-
-       
-        
-
-
-
-    
+				<div class="form-group">
+					@Html.LabelFor(model => model.Email, new { @class = "control-label text-light" }):
+					@Html.TextBoxFor(model => model.Email, new { @class = "form-control rounded", type = "email" })
+					@Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+				</div>
+				<div class="form-group">
+					@Html.LabelFor(model => model.Asunto, new { @class = "control-label text-light" }):
+					@Html.TextAreaFor(model => model.Asunto, new { @class = "form-control rounded" })
+					@Html.ValidationMessageFor(model => model.Asunto, "", new { @class = "text-danger" })
+				</div>
+				<div class="form-group">
+					<div class="row justify-content-end">
+						<div>
+							<button class="btn btn-primary" type="submit"><i class="fa-solid fa-paper-plane"></i> Enviar</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+}
+@section scripts{
+	<script>
+		let success = @IsSucceded;
+		
+		if (success) {
+			Swal.fire({
+				title: 'Registro exitoso',
+				text: 'Pronto nos comunicaremos contigo',
+				icon: 'success'
+			})
+		}
+	</script>
+}
 
 
 
 
 
- 
+
+
+
+
+
+
+
+
 
 
 

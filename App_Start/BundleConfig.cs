@@ -21,11 +21,14 @@ namespace SoteloProjectFramework
 
             bundles.Add(new Bundle("~/bundles/bootstrap").Include(
                       //"~/Scripts/bootstrap.js",
-                      "~/Scripts/bootstrap.bundle.js"));
+                      "~/Scripts/bootstrap.bundle.js",
+                      "~/Content/lib/sweetalert2/dist/sweetalert2.js"
+                      ));
 
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/lib/sweetalert2/dist/sweetalert2.css",
                       "~/Content/site.css"));
 
             bundles.Add(new StyleBundle("~/Content/cssAdmin").Include(

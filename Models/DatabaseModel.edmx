@@ -66,6 +66,13 @@
           <Property Name="AccessFailedCount" Type="int" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
         </EntityType>
+        <EntityType Name="cBuzonEstatus">
+          <Key>
+            <PropertyRef Name="BuzonEstatusId" />
+          </Key>
+          <Property Name="BuzonEstatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
         <EntityType Name="cMenus">
           <Key>
             <PropertyRef Name="MenuId" />
@@ -85,6 +92,18 @@
           <Property Name="Descripcion" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="Valor" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="Estatus" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbBuzon">
+          <Key>
+            <PropertyRef Name="BuzonId" />
+          </Key>
+          <Property Name="BuzonId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BuzonEstatusId" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Asunto" Type="text" Nullable="false" />
+          <Property Name="Estatus" Type="bit" Nullable="false" />
+          <Property Name="Eliminado" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="tbCategoriasChoferes">
           <Key>
@@ -233,6 +252,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_tbBuzon_cBuzonEstatus">
+          <End Role="cBuzonEstatus" Type="Self.cBuzonEstatus" Multiplicity="1" />
+          <End Role="tbBuzon" Type="Self.tbBuzon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cBuzonEstatus">
+              <PropertyRef Name="BuzonEstatusId" />
+            </Principal>
+            <Dependent Role="tbBuzon">
+              <PropertyRef Name="BuzonEstatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_tbChoferes_tbCategoriasChoferes">
           <End Role="tbCategoriasChoferes" Type="Self.tbCategoriasChoferes" Multiplicity="1" />
           <End Role="tbChoferes" Type="Self.tbChoferes" Multiplicity="*" />
@@ -336,8 +367,10 @@
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cBuzonEstatus" EntityType="Self.cBuzonEstatus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="cMenus" EntityType="Self.cMenus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="cRecursosGenerales" EntityType="Self.cRecursosGenerales" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbBuzon" EntityType="Self.tbBuzon" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbCategoriasChoferes" EntityType="Self.tbCategoriasChoferes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbChoferes" EntityType="Self.tbChoferes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbContabilidadViaje" EntityType="Self.tbContabilidadViaje" Schema="dbo" store:Type="Tables" />
@@ -360,6 +393,10 @@
           <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbBuzon_cBuzonEstatus" Association="Self.FK_tbBuzon_cBuzonEstatus">
+            <End Role="cBuzonEstatus" EntitySet="cBuzonEstatus" />
+            <End Role="tbBuzon" EntitySet="tbBuzon" />
           </AssociationSet>
           <AssociationSet Name="FK_tbChoferes_tbCategoriasChoferes" Association="Self.FK_tbChoferes_tbCategoriasChoferes">
             <End Role="tbCategoriasChoferes" EntitySet="tbCategoriasChoferes" />
@@ -404,8 +441,10 @@
           <EntitySet Name="AspNetUserClaims" EntityType="SOTELO_ASPNETModel.AspNetUserClaims" />
           <EntitySet Name="AspNetUserLogins" EntityType="SOTELO_ASPNETModel.AspNetUserLogins" />
           <EntitySet Name="AspNetUsers" EntityType="SOTELO_ASPNETModel.AspNetUsers" />
+          <EntitySet Name="cBuzonEstatus" EntityType="SOTELO_ASPNETModel.cBuzonEstatus" />
           <EntitySet Name="cMenus" EntityType="SOTELO_ASPNETModel.cMenus" />
           <EntitySet Name="cRecursosGenerales" EntityType="SOTELO_ASPNETModel.cRecursosGenerales" />
+          <EntitySet Name="tbBuzon" EntityType="SOTELO_ASPNETModel.tbBuzon" />
           <EntitySet Name="tbCategoriasChoferes" EntityType="SOTELO_ASPNETModel.tbCategoriasChoferes" />
           <EntitySet Name="tbChoferes" EntityType="SOTELO_ASPNETModel.tbChoferes" />
           <EntitySet Name="tbContabilidadViaje" EntityType="SOTELO_ASPNETModel.tbContabilidadViaje" />
@@ -428,6 +467,10 @@
           <AssociationSet Name="FK_tbUsuarios_AspNetUsers" Association="SOTELO_ASPNETModel.FK_tbUsuarios_AspNetUsers">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="tbUsuarios" EntitySet="tbUsuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbBuzon_cBuzonEstatus" Association="SOTELO_ASPNETModel.FK_tbBuzon_cBuzonEstatus">
+            <End Role="cBuzonEstatus" EntitySet="cBuzonEstatus" />
+            <End Role="tbBuzon" EntitySet="tbBuzon" />
           </AssociationSet>
           <AssociationSet Name="FK_tbMenusRoles_cMenus" Association="SOTELO_ASPNETModel.FK_tbMenusRoles_cMenus">
             <End Role="cMenus" EntitySet="cMenus" />
@@ -519,6 +562,14 @@
           <NavigationProperty Name="tbUsuarios" Relationship="SOTELO_ASPNETModel.FK_tbUsuarios_AspNetUsers" FromRole="AspNetUsers" ToRole="tbUsuarios" />
           <NavigationProperty Name="AspNetRoles" Relationship="SOTELO_ASPNETModel.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
         </EntityType>
+        <EntityType Name="cBuzonEstatus">
+          <Key>
+            <PropertyRef Name="BuzonEstatusId" />
+          </Key>
+          <Property Name="BuzonEstatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tbBuzon" Relationship="SOTELO_ASPNETModel.FK_tbBuzon_cBuzonEstatus" FromRole="cBuzonEstatus" ToRole="tbBuzon" />
+        </EntityType>
         <EntityType Name="cMenus">
           <Key>
             <PropertyRef Name="MenuId" />
@@ -539,6 +590,19 @@
           <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="Valor" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="Estatus" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbBuzon">
+          <Key>
+            <PropertyRef Name="BuzonId" />
+          </Key>
+          <Property Name="BuzonId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BuzonEstatusId" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Asunto" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Estatus" Type="Boolean" Nullable="false" />
+          <Property Name="Eliminado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="cBuzonEstatus" Relationship="SOTELO_ASPNETModel.FK_tbBuzon_cBuzonEstatus" FromRole="tbBuzon" ToRole="cBuzonEstatus" />
         </EntityType>
         <EntityType Name="tbCategoriasChoferes">
           <Key>
@@ -696,6 +760,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_tbBuzon_cBuzonEstatus">
+          <End Type="SOTELO_ASPNETModel.cBuzonEstatus" Role="cBuzonEstatus" Multiplicity="1" />
+          <End Type="SOTELO_ASPNETModel.tbBuzon" Role="tbBuzon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cBuzonEstatus">
+              <PropertyRef Name="BuzonEstatusId" />
+            </Principal>
+            <Dependent Role="tbBuzon">
+              <PropertyRef Name="BuzonEstatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_tbMenusRoles_cMenus">
           <End Type="SOTELO_ASPNETModel.cMenus" Role="cMenus" Multiplicity="1" />
           <End Type="SOTELO_ASPNETModel.tbMenusRoles" Role="tbMenusRoles" Multiplicity="*" />
@@ -833,6 +909,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="cBuzonEstatus">
+            <EntityTypeMapping TypeName="SOTELO_ASPNETModel.cBuzonEstatus">
+              <MappingFragment StoreEntitySet="cBuzonEstatus">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="BuzonEstatusId" ColumnName="BuzonEstatusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="cMenus">
             <EntityTypeMapping TypeName="SOTELO_ASPNETModel.cMenus">
               <MappingFragment StoreEntitySet="cMenus">
@@ -852,6 +936,19 @@
                 <ScalarProperty Name="Valor" ColumnName="Valor" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
                 <ScalarProperty Name="RecursoId" ColumnName="RecursoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbBuzon">
+            <EntityTypeMapping TypeName="SOTELO_ASPNETModel.tbBuzon">
+              <MappingFragment StoreEntitySet="tbBuzon">
+                <ScalarProperty Name="Eliminado" ColumnName="Eliminado" />
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+                <ScalarProperty Name="Asunto" ColumnName="Asunto" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="BuzonEstatusId" ColumnName="BuzonEstatusId" />
+                <ScalarProperty Name="BuzonId" ColumnName="BuzonId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -45,4 +45,10 @@ namespace SoteloProjectFramework.Models
         public tbChoferes Chofer { get; set; }
         public tbContabilidadViaje Contabilidad { get; set; }
     }
+
+    public class ModeloExtendidoBuzon
+    {
+        public IEnumerable<tbBuzon> Buzones { get; set; }
+        public tbBuzon Buzon { get; set; }
+    }
 }

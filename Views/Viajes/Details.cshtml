@@ -1,103 +1,147 @@
 ﻿@model SoteloProjectFramework.Models.ModeloExtendidoViaje
 
 @{
-	ViewBag.Title = "Detalle Viaje";
+	ViewBag.Title = "Datos Generales";
 	Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 	IEnumerable<SelectListItem> lsChoferes = ViewBag.lsChoferes;
 }
 
-<h2>Detalle del viaje</h2>
-
 @using (Html.BeginForm())
 {
 	@Html.AntiForgeryToken()
-
-	<div class="form-horizontal">
-		<!--<h4>-->@*Viaje de @Model.Chofer.Nombres @Model.Chofer.PrimerApellido @Model.Chofer.SegundoApellido*@<!--</h4>-->
-		<hr />
-		@Html.ValidationSummary(true, "", new { @class = "text-danger" })
-		<div class="form-group">
-			@Html.Label("", "Chofer", new { @class = "control-label col-md-2" })
-			<div class="col-md-10">
-				@Html.DropDownListFor(model => model.Chofer.ChoferId, lsChoferes, "-- Seleccione una opción --", new { @class = "form-control" })
-				@Html.ValidationMessageFor(model => model.Chofer.ChoferId, "", new { @class = "text-danger" })
+	<div class="container d-flex justify-content-center">
+		<div style="height: max-content; margin-top: 1vh; border-radius: 40px; background: rgba(39, 60, 117,0.9);">
+			<div class="bg-light w-100" style="margin-left: 1vw; margin-top: 2vh; border-radius: 40px;">
+				<div class="row justify-content-center">
+					<div class="col-md-10">
+						<div class="d-flex justify-content-center">
+							<h3 class="text-light rounded-pill w-75 text-center" style="background: rgba(39, 60, 117,0.9);">@ViewBag.Title</h3>
+						</div>
+						<div id="loginForm">
+							@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+							<div class="form-horizontal">
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											@Html.Label("", "Chofer", new { @class = "control-label" })
+											<div class="col-md-10">
+												@Html.DropDownListFor(model => model.Chofer.ChoferId, lsChoferes, "-- Seleccione una opción --", new { @class = "form-control" })
+												@Html.ValidationMessageFor(model => model.Chofer.ChoferId, "", new { @class = "text-danger" })
+											</div>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											@Html.Label("", "Fecha", new { @class = "control-label" })
+											<div class="col-md-10">
+												@Html.TextBoxFor(model => model.Viajes.Fecha, new { @class = "form-control", type = "date" })
+												@Html.ValidationMessageFor(model => model.Viajes.Fecha, "", new { @class = "text-danger" })
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											@Html.Label("", "Folio", new { @class = "control-label" })
+											<div class="col-md-10">
+												@Html.TextBoxFor(model => model.Viajes.Folio, new { @class = "form-control" })
+												@Html.ValidationMessageFor(model => model.Viajes.Folio, "", new { @class = "text-danger" })
+											</div>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											@Html.Label("", "Importe", new { @class = "control-label" })
+											<div class="col-md-10">
+												@Html.TextBoxFor(model => model.Contabilidad.Importe, new { @class = "form-control", type = "number" })
+												@Html.ValidationMessageFor(model => model.Contabilidad.Importe, "", new { @class = "text-danger" })
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											@Html.Label("", "Lugar inicio", new { @class = "control-label" })
+											<div class="col-md-10">
+												@Html.TextBoxFor(model => model.Viajes.LugarOrigen, new { @class = "form-control" })
+												@Html.ValidationMessageFor(model => model.Viajes.LugarOrigen, "", new { @class = "text-danger" })
+											</div>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											@Html.Label("", "Salario Bruto del Chofer", new { @class = "control-label" })
+											<div class="col-md-10">
+												@Html.TextBoxFor(model => model.Contabilidad.SalarioBrutoChofer, new { @class = "form-control", type = "number", @readonly = true })
+												@Html.ValidationMessageFor(model => model.Contabilidad.SalarioBrutoChofer, "", new { @class = "text-danger" })
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											@Html.Label("", "Lugar destino", new { @class = "control-label" })
+											<div class="col-md-10">
+												@Html.TextBoxFor(model => model.Viajes.LugarDestino, new { @class = "form-control" })
+												@Html.ValidationMessageFor(model => model.Viajes.LugarDestino, "", new { @class = "text-danger" })
+											</div>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											@Html.Label("", "Gastos", new { @class = "control-label" })
+											<div class="col-md-10">
+												@Html.TextBoxFor(model => model.Contabilidad.Gastos, new { @class = "form-control", type = "number" })
+												@Html.ValidationMessageFor(model => model.Contabilidad.Gastos, "", new { @class = "text-danger" })
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											@Html.Label("", "Diesel", new { @class = "control-label" })
+											<div class="col-md-10">
+												@Html.TextBoxFor(model => model.Contabilidad.Diesel, new { @class = "form-control", type = "number" })
+												@Html.ValidationMessageFor(model => model.Contabilidad.Diesel, "", new { @class = "text-danger" })
+											</div>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											@Html.Label("", "Salario Neto", new { @class = "control-label" })
+											<div class="col-md-10">
+												@Html.TextBoxFor(model => model.Contabilidad.SalarioNeto, new { @class = "form-control", type = "number" })
+												@Html.ValidationMessageFor(model => model.Contabilidad.SalarioNeto, "", new { @class = "text-danger" })
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6 offset-6">
+										<div class="form-group">
+											@Html.Label("", "Ganancia", new { @class = "control-label" })
+											<div class="col-md-10">
+												@Html.TextBoxFor(model => model.Contabilidad.Ganancia, new { @class = "form-control", type = "number", @readonly = true })
+												@Html.ValidationMessageFor(model => model.Contabilidad.Ganancia, "", new { @class = "text-danger" })
+											</div>
+										</div>
+									</div>
+								</div>
+								@*<div class="form-group">
+									<div class="col-md-offset-2 col-md-10">
+										<input type="submit" value="Registrar" class="btn btn-secondary" />
+									</div>
+								</div>*@
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
-		<div class="form-group">
-			@Html.Label("", "Fecha", new { @class = "control-label col-md-2" })
-			<div class="col-md-10">
-				@Html.TextBoxFor(model => model.Viajes.Fecha, new { @class = "form-control", type = "date" })
-				@Html.ValidationMessageFor(model => model.Viajes.Fecha, "", new { @class = "text-danger" })
-			</div>
-		</div>
-		<div class="form-group">
-			@Html.Label("", "Folio", new { @class = "control-label col-md-2" })
-			<div class="col-md-10">
-				@Html.TextBoxFor(model => model.Viajes.Folio, new { @class = "form-control" })
-				@Html.ValidationMessageFor(model => model.Viajes.Folio, "", new { @class = "text-danger" })
-			</div>
-		</div>
-		<div class="form-group">
-			@Html.Label("", "Origen", new { @class = "control-label col-md-2" })
-			<div class="col-md-10">
-				@Html.TextBoxFor(model => model.Viajes.LugarOrigen, new { @class = "form-control" })
-				@Html.ValidationMessageFor(model => model.Viajes.LugarOrigen, "", new { @class = "text-danger" })
-			</div>
-		</div>
-		<div class="form-group">
-			@Html.Label("", "Destino", new { @class = "control-label col-md-2" })
-			<div class="col-md-10">
-				@Html.TextBoxFor(model => model.Viajes.LugarDestino, new { @class = "form-control" })
-				@Html.ValidationMessageFor(model => model.Viajes.LugarDestino, "", new { @class = "text-danger" })
-			</div>
-		</div>
-		<div class="form-group">
-			@Html.Label("", "Diesel", new { @class = "control-label col-md-2" })
-			<div class="col-md-10">
-				@Html.TextBoxFor(model => model.Contabilidad.Diesel, new { @class = "form-control" })
-				@Html.ValidationMessageFor(model => model.Contabilidad.Diesel, "", new { @class = "text-danger" })
-			</div>
-		</div>
-		<div class="form-group">
-			@Html.Label("", "Importe", new { @class = "control-label col-md-2" })
-			<div class="col-md-10">
-				@Html.TextBoxFor(model => model.Contabilidad.Importe, new { @class = "form-control" })
-				@Html.ValidationMessageFor(model => model.Contabilidad.Importe, "", new { @class = "text-danger" })
-			</div>
-		</div>
-		<div class="form-group">
-			@Html.Label("", "Salario Bruto del Chofer", new { @class = "control-label col-md-2" })
-			<div class="col-md-10">
-				@Html.TextBoxFor(model => model.Contabilidad.SalarioBrutoChofer, new { @class = "form-control" })
-				@Html.ValidationMessageFor(model => model.Contabilidad.SalarioBrutoChofer, "", new { @class = "text-danger" })
-			</div>
-		</div>
-		<div class="form-group">
-			@Html.Label("", "Gastos", new { @class = "control-label col-md-2" })
-			<div class="col-md-10">
-				@Html.TextBoxFor(model => model.Contabilidad.Gastos, new { @class = "form-control" })
-				@Html.ValidationMessageFor(model => model.Contabilidad.Gastos, "", new { @class = "text-danger" })
-			</div>
-		</div>
-		<div class="form-group">
-			@Html.Label("", "Salario Neto", new { @class = "control-label col-md-2" })
-			<div class="col-md-10">
-				@Html.TextBoxFor(model => model.Contabilidad.SalarioNeto, new { @class = "form-control" })
-				@Html.ValidationMessageFor(model => model.Contabilidad.SalarioNeto, "", new { @class = "text-danger" })
-			</div>
-		</div>
-		<div class="form-group">
-			@Html.Label("", "Ganancia", new { @class = "control-label col-md-2" })
-			<div class="col-md-10">
-				@Html.TextBoxFor(model => model.Contabilidad.Ganancia, new { @class = "form-control" })
-				@Html.ValidationMessageFor(model => model.Contabilidad.Ganancia, "", new { @class = "text-danger" })
-			</div>
-		</div>
-		@*<div class="form-group">
-			<div class="col-md-offset-2 col-md-10">
-				<input type="submit" value="Registrar Viaje" class="btn btn-success" />
-			</div>
-		</div>*@
 	</div>
 }
 @section scripts{

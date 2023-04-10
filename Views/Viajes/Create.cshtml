@@ -4,6 +4,7 @@
 	ViewBag.Title = "Datos Generales";
 	Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 	IEnumerable<SelectListItem> lsChoferes = ViewBag.lsChoferes;
+	bool Direct = ViewBag.Direct;
 	string Hoy = ViewBag.Hoy;
 }
 
@@ -27,7 +28,7 @@
 										<div class="form-group">
 											@Html.Label("", "Chofer", new { @class = "control-label" })
 											<div class="col-md-10">
-												@Html.DropDownListFor(model => model.Chofer.ChoferId, lsChoferes, "-- Seleccione una opción --", new { @class = "form-control" })
+												@Html.DropDownListFor(model => model.Chofer.ChoferId, lsChoferes, new { @class = "form-control"})
 												@Html.ValidationMessageFor(model => model.Chofer.ChoferId, "", new { @class = "text-danger" })
 											</div>
 										</div>
@@ -116,7 +117,7 @@
 										<div class="form-group">
 											@Html.Label("", "Salario Neto", new { @class = "control-label" })
 											<div class="col-md-10">
-												@Html.TextBoxFor(model => model.Contabilidad.SalarioNeto, new { @class = "form-control", type = "number" })
+												@Html.TextBoxFor(model => model.Contabilidad.SalarioNeto, new { @class = "form-control", type = "number", @readonly = true })
 												@Html.ValidationMessageFor(model => model.Contabilidad.SalarioNeto, "", new { @class = "text-danger" })
 											</div>
 										</div>
@@ -205,9 +206,15 @@
 				calcularGanancia()
 			})
 
-			$('#Chofer_ChoferId').select2({
-				placeholder: 'Seleccione'
-			})
+			@{
+				string DirectStr = Direct ? "true" : "false";
+			}
+
+			if (!@DirectStr) {
+				$('#Chofer_ChoferId').select2({
+					placeholder: 'Seleccione'
+				})
+			}
 
 			$('form').on('submit', function (e) {
 				e.preventDefault()

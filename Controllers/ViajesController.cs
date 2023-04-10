@@ -24,6 +24,7 @@ namespace SoteloProjectFramework.Controllers
             return View(model);
         }
 
+        [ActionName("Create1")]
         public ActionResult Create()
         {
             var lsChoferes = db.tbChoferes.Where(x => !x.Eliminado && x.Estatus).Select(x => new SelectListItem
@@ -33,7 +34,23 @@ namespace SoteloProjectFramework.Controllers
             }).OrderBy(x => x.Value).ToList();
             ViewBag.lsChoferes = lsChoferes;
             ViewBag.Hoy = DateTime.Now.ToString("yyyy-MM-dd");
-            return View();
+            ViewBag.Direct = false;
+            return View("~/Views/Viajes/Create.cshtml");
+        }
+
+        [ActionName("Create2")]
+        public ActionResult Create(int ChoferId)
+        {
+            var lsChoferes = db.tbChoferes.Where(x => x.ChoferId == ChoferId && !x.Eliminado && x.Estatus).Select(x => new SelectListItem
+            {
+                Value = x.ChoferId.ToString(),
+                Text = x.Nombres + " " + x.PrimerApellido + " " + x.SegundoApellido,
+                Selected = true
+            }).OrderBy(x => x.Value).ToList();
+            ViewBag.lsChoferes = lsChoferes;
+            ViewBag.Hoy = DateTime.Now.ToString("yyyy-MM-dd");
+            ViewBag.Direct = true;
+            return View("~/Views/Viajes/Create.cshtml");
         }
 
         [HttpPost]

@@ -56,6 +56,14 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="cBuzonEstatus">
+      <EntityTypeMapping TypeName="SOTELO_ASPNETModel.cBuzonEstatus">
+        <MappingFragment StoreEntitySet="cBuzonEstatus">
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="BuzonEstatusId" ColumnName="BuzonEstatusId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="cMenus">
       <EntityTypeMapping TypeName="SOTELO_ASPNETModel.cMenus">
         <MappingFragment StoreEntitySet="cMenus">
@@ -75,6 +83,19 @@
           <ScalarProperty Name="Valor" ColumnName="Valor" />
           <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
           <ScalarProperty Name="RecursoId" ColumnName="RecursoId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbBuzon">
+      <EntityTypeMapping TypeName="SOTELO_ASPNETModel.tbBuzon">
+        <MappingFragment StoreEntitySet="tbBuzon">
+          <ScalarProperty Name="Eliminado" ColumnName="Eliminado" />
+          <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+          <ScalarProperty Name="Asunto" ColumnName="Asunto" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="BuzonEstatusId" ColumnName="BuzonEstatusId" />
+          <ScalarProperty Name="BuzonId" ColumnName="BuzonId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -1,38 +1,139 @@
-﻿
+﻿@model SoteloProjectFramework.Models.ModeloExtendidoBuzon
 @{
-    ViewBag.Title = "Pendiente";
-    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+	ViewBag.Title = "Pendientes";
+	Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Pendiente</h2>
+<style>
+	table tbody tr:hover {
+		background-color: #4a4a4a;
+		cursor: pointer;
+	}
+
+	.rowSelected {
+		background-color: #4a4a4a;
+	}
+
+	.rowUnselected {
+		background-color: none;
+	}
+</style>
+<h3>Pendientes</h3>
+@using (Html.BeginForm("Update", "Buzon", FormMethod.Post))
+{
+	<div class="d-flex justify-content-evenly">
+
+		<div class="container  d-flex flex-column ">
+
+			@*<a href="#" tabindex="-1" class="btn btn-primary disabled placeholder  " aria-hidden="true" style="margin:1vw;"></a>
+				<a href="#" tabindex="-1" class="btn btn-primary disabled placeholder  " aria-hidden="true" style="margin:1vw;"></a>
+				<a href="#" tabindex="-1" class="btn btn-primary disabled placeholder " aria-hidden="true" style="margin:1vw;"></a>
+				 <a href="#" tabindex="-1" class="btn btn-primary disabled placeholder " aria-hidden="true" style="margin:1vw;"></a>*@
+
+			<table class="table table-responsive">
+				<thead>
+					<tr>
+						<th>Nombre</th>
+						<th>Email</th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach (var item in Model.Buzones)
+					{
+						<tr id="@item.BuzonId">
+							<td>@item.Nombre</td>
+							<td>@item.Email</td>
+						</tr>
+					}
+				</tbody>
+			</table>
+
+		</div>
+
+		<div class="container card flex-column justify-content-center" style="height:50vh;">
+
+			<div class="d-flex justify-content-center">
+				<h3 class="text-center bg-gradient-primary rounded-5 text-light" style="border-radius:20px; width:10vw;">Detalles</h3>
+			</div>
+
+			<div class="container justify-content-center">
+				@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+				@Html.HiddenFor(model => model.Buzon.BuzonId)
+				<div class="form-group">
+					@Html.LabelFor(model => model.Buzon.Nombre, new { @class = "control-label" }): @Html.TextBoxFor(model => model.Buzon.Nombre, new { @class = "form-control rounded", @readonly = true })
+					@Html.ValidationMessageFor(model => model.Buzon.Nombre, "", new { @class = "text-danger" })
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.Buzon.Email, new { @class = "control-label" }): @Html.TextBoxFor(model => model.Buzon.Email, new { @class = "form-control rounded", type = "email", @readonly = true })
+					@Html.ValidationMessageFor(model => model.Buzon.Email, "", new { @class = "text-danger" })
+				</div>
+				<div class="form-group">
+					@Html.LabelFor(model => model.Buzon.Asunto, new { @class = "control-label" }): @Html.TextAreaFor(model => model.Buzon.Asunto, new { @class = "form-control rounded", @readonly = true })
+					@Html.ValidationMessageFor(model => model.Buzon.Asunto, "", new { @class = "text-danger" })
+				</div>
+				@Html.HiddenFor(model => model.Buzon.BuzonEstatusId)
+				@Html.HiddenFor(model => model.Buzon.Estatus)
+				@Html.HiddenFor(model => model.Buzon.Eliminado)
+				<div class="text-center">
+					<button type="button" id="btnAtendido" class="btn btn-success btn-sm rounded-pill">Atendido</button>
+					@*<button type="button" id="btnPendiente" class="btn btn-success btn-sm rounded-pill">Pendiente</button>*@
+					<button type="submit" id="btnSend" hidden></button>
+				</div>
+			</div>
+		</div>
 
 
-<div class="d-flex justify-content-evenly">
-
-    <div class="container  d-flex flex-column ">
-
-        <a href="#" tabindex="-1" class="btn btn-primary disabled placeholder  " aria-hidden="true" style="margin:1vw;"></a>
-        <a href="#" tabindex="-1" class="btn btn-primary disabled placeholder  " aria-hidden="true" style="margin:1vw;"></a>
-        <a href="#" tabindex="-1" class="btn btn-primary disabled placeholder " aria-hidden="true" style="margin:1vw;"></a>
-        <a href="#" tabindex="-1" class="btn btn-primary disabled placeholder " aria-hidden="true" style="margin:1vw;"></a>
+	</div>
+}
 
 
+@section scripts{
+	<script>
+		var currentIdSelected = -1
 
-    </div>
+		function MostrarDetalles() {
+			if (currentIdSelected != -1) {
+				window.location = `@Url.Action("Details", "Buzon")?BuzonId=${currentIdSelected}&BuzonEstatusId=2`
+			} else {
+				Swal.fire({
+					title: '¡Atención!',
+					text: 'Es necesario seleccionar un viaje',
+					icon: 'warning'
+				})
+			}
+		}
 
-    <div class="container d-flex flex-column justify-content-between bg-gradient-light" style="height:50vh;">
+		$(document).ready(function () {
+			$('table tbody tr').click(function () {
+				let tr = this
+				$.each($('table tbody tr'), function (i, e) {
+					if (e != tr) {
+						$(e).removeClass('rowSelected')
+						return;
+					}
+					if ($(e).hasClass('rowSelected')) {
+						$(e).removeClass('rowSelected')
+						$(e).addClass('rowUnselected')
+						currentIdSelected = -1
+					} else {
+						$(e).removeClass('rowUnselected')
+						$(e).addClass('rowSelected')
+						currentIdSelected = $(e).attr('id')
+						MostrarDetalles()
+					}
+				})
+			})
 
-        <div class="d-flex justify-content-center">
-            <h3 class="text-center bg-gradient-primary rounded-5 text-light" style="border-radius:20px; width:10vw;">Detalles</h3>
-        </div>
+			$('#btnPendiente').on('click', function (e) {
+				$('#Buzon_BuzonEstatusId').val(2)
+				$('#btnSend').trigger('click')
+			})
 
-
-
-        <div class="text-center">
-            
-            <a class="btn btn-success btn-sm rounded-pill" >Atendido</a>
-        </div>
-    </div>
-
-
-</div>
+			$('#btnAtendido').on('click', function (e) {
+				$('#Buzon_BuzonEstatusId').val(3)
+				$('#btnSend').trigger('click')
+			})
+		})
+	</script>
+}
