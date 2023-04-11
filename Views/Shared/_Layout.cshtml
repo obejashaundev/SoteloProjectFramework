@@ -1,4 +1,11 @@
-﻿<!DOCTYPE html>
+﻿@{ 
+	SoteloProjectFramework.Servicios.Sesiones sc = new SoteloProjectFramework.Servicios.Sesiones();
+	SoteloProjectFramework.Servicios.FuncionalidadesGenerales fg = new SoteloProjectFramework.Servicios.FuncionalidadesGenerales();
+	var idusuarioLog = sc.UsuarioId;
+	var lstAccesosDenegados = fg.ObtenerDatosAccesoUsuario(idusuarioLog);
+	var css_ocultar = "." + string.Join(",.", lstAccesosDenegados.CSS) + " { display:none !important;}";
+}
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -39,5 +46,8 @@
 	@Scripts.Render("~/bundles/bootstrap")
 	@Scripts.Render("~/bundles/libraries")
 	@RenderSection("scripts", required: false)
+	<style>
+		@css_ocultar
+	</style>
 </body>
 </html>

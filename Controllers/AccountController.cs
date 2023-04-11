@@ -19,6 +19,7 @@ namespace SoteloProjectFramework.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
         private RecursosGenerales rg = new RecursosGenerales();
+        private FuncionalidadesGenerales fg = new FuncionalidadesGenerales();
         private EntidadesSotelo db = new EntidadesSotelo();
 
 
@@ -76,13 +77,17 @@ namespace SoteloProjectFramework.Controllers
             {
                 return View(model);
             }
-
+            var oUsuario = db.tbUsuarios.FirstOrDefault(a => a.UserName == model.UserName && !a.Eliminado);
             // No cuenta los errores de inicio de sesión para el bloqueo de la cuenta
             // Para permitir que los errores de contraseña desencadenen el bloqueo de la cuenta, cambie a shouldLockout: true
             var result = await SignInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
+                    fg.AsignarSesionesInicioSesion(model.UserName);
+
+                    //Asignamos los Accesos
+                    fg.ObtenerDatosAccesoUsuario(oUsuario.UsuarioId);
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -177,9 +182,24 @@ namespace SoteloProjectFramework.Controllers
                     oModelo.Contrasenia = model.Password;
                     oModelo.Email = model.Email;
                     oModelo.Estatus = true;
-                    oModelo.Eliminado = true;
+                    oModelo.Eliminado = false;
 
                     db.tbUsuarios.Add(oModelo);
+                    db.SaveChanges();
+                    #endregion
+
+                    #region Configuramos los menus del usuario
+                    var UsuarioId = db.tbUsuarios.FirstOrDefault(x => x.UserId == oModelo.UserId).UsuarioId;
+                    var Menus = db.cMenus.ToList();
+                    foreach (var Menu in Menus)
+                    {
+                        db.tbMenusRoles.Add(new tbMenusRoles
+                        {
+                            MenuId = Menu.MenuId,
+                            UsuarioId = UsuarioId,
+                            Estatus = true
+                        });
+                    }
                     db.SaveChanges();
                     #endregion
 

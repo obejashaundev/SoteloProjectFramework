@@ -1,5 +1,11 @@
 ﻿@{
 	var url = ViewBag.Url;
+
+	SoteloProjectFramework.Servicios.Sesiones sc = new SoteloProjectFramework.Servicios.Sesiones();
+	SoteloProjectFramework.Servicios.FuncionalidadesGenerales fg = new SoteloProjectFramework.Servicios.FuncionalidadesGenerales();
+	var idusuarioLog = sc.UsuarioId;
+	var lstAccesosDenegados = fg.ObtenerDatosAccesoUsuario(idusuarioLog);
+	var css_ocultar = "." + string.Join(",.", lstAccesosDenegados.CSS) + " { display:none !important;}";
 }
 <!DOCTYPE html>
 <html>
@@ -180,24 +186,24 @@
 			</li>-->
 			<!-- Nav Item - Pages Collapse Menu -->
 			@*<li class="nav-item">*@
-				@*<a class="nav-link" href="@Url.Action("Index", "Usuarios")">
+			@*<a class="nav-link" href="@Url.Action("Index", "Usuarios")">
 					<img class="img-profile rounded-circle" style="width: 1em; height:1em;" src="@Url.Content("~/Content/img/usuario.png")">
 					<span>Usuarios</span>
 				</a>*@
-				@*<div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-						<div class="bg-white py-2 collapse-inner rounded">
-							<a class="collapse-item" href="blank.html">
-								<i class="fas fa-fa fa-sign-out-alt"></i>
-								Areas de usuario
-							</a>
-						</div>
-						<div class="bg-white py-2 collapse-inner rounded">
-							<a class="collapse-item" href="blank.html">
-								<i class="fas fa-fa fa-sign-out-alt"></i>
-								Roles de usuarios
-							</a>
-						</div>
-					</div>*@
+			@*<div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" href="blank.html">
+							<i class="fas fa-fa fa-sign-out-alt"></i>
+							Areas de usuario
+						</a>
+					</div>
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" href="blank.html">
+							<i class="fas fa-fa fa-sign-out-alt"></i>
+							Roles de usuarios
+						</a>
+					</div>
+				</div>*@
 			@*</li>*@
 
 			<!-- Divider -->
@@ -485,6 +491,10 @@
 			$("#Espere").fadeIn("slow");
 		};
 	</script>
+	<style>
+
+        @css_ocultar
+	</style>
 </body>
 </html>
 

@@ -37,7 +37,15 @@ namespace SoteloProjectFramework.Controllers
         // GET: Usuarios
         public ActionResult Index()
         {
-            var model = db.tbUsuarios.ToList();
+            dynamic model = null;
+            if (sc.RolUsuarioLogueado != rg.RolMaster)
+            {
+                model = db.tbUsuarios.Where(x => x.RolId != rg.RolMaster).ToList();
+            }
+            else
+            {
+                model = db.tbUsuarios.ToList();
+            }
             return View(model);
         }
 
@@ -69,6 +77,9 @@ namespace SoteloProjectFramework.Controllers
                     oModelo.UserId = user.Id;
                     oModelo.RolId = rg.RolAdministradores;
                     oModelo.UserName = model.UserName;
+                    oModelo.Nombres = model.Nombres;
+                    oModelo.PrimerApellido = model.PrimerApellido;
+                    oModelo.SegundoApellido = model.SegundoApellido;
                     oModelo.Contrasenia = model.Contrasenia;
                     oModelo.Email = model.Email;
                     oModelo.Estatus = true;
@@ -87,7 +98,7 @@ namespace SoteloProjectFramework.Controllers
                         {
                             MenuId = Menu.MenuId,
                             UsuarioId = UsuarioId,
-                            Estatus = false
+                            Estatus = true
                         });
                     }
                     db.SaveChanges();

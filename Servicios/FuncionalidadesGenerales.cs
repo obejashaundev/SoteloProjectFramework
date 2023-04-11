@@ -25,7 +25,7 @@ namespace SoteloProjectFramework.Servicios
                         AsignarSesionesInicioSesion(oNombreUsuario);
 
                         //Asignamos los Accesos
-                        ObtenerDatosAccesoUsuario(oNombreUsuario, oUsuario.UsuarioId);
+                        ObtenerDatosAccesoUsuario(oUsuario.UsuarioId);
 
                     }
                 }
@@ -87,7 +87,7 @@ namespace SoteloProjectFramework.Servicios
             }
         }
 
-        public ListaAccesosDenegados ObtenerDatosAccesoUsuario(string pUsuarioLogueado, int pUsuarioId, string pRolPerfil = "")
+        public ListaAccesosDenegados ObtenerDatosAccesoUsuario(int pUsuarioId)
         {
             try
             {
@@ -95,39 +95,31 @@ namespace SoteloProjectFramework.Servicios
 
                 Sesiones sc = new Sesiones();
                 RecursosGenerales rg = new RecursosGenerales();
-                var oUsuarioAnterior = "";
-                var oUsuarioNuevo = pUsuarioLogueado;
+                var oUsuarioAnterior = 0;
+                var oUsuarioNuevo = pUsuarioId;
 
                 if (HttpContext.Current.Session["UsuarioLogueado"] == null)
                 {
-                    HttpContext.Current.Session["UsuarioLogueado"] = pUsuarioLogueado;
+                    HttpContext.Current.Session["UsuarioLogueado"] = pUsuarioId;
                 }
                 else
                 {
-                    oUsuarioAnterior = HttpContext.Current.Session["UsuarioLogueado"].ToString();
+                    oUsuarioAnterior = (int)HttpContext.Current.Session["UsuarioLogueado"];
                 }
 
                 if (oUsuarioNuevo != oUsuarioAnterior)
                 {
-                    HttpContext.Current.Session["UsuarioLogueado"] = pUsuarioLogueado;
+                    HttpContext.Current.Session["UsuarioLogueado"] = pUsuarioId;
                     HttpContext.Current.Session["MenuCSS"] = null;
                     HttpContext.Current.Session["MenuSlug"] = null;
                 }
 
-                if (HttpContext.Current.Session["MenuCSS"] == null)
+                using (EntidadesSotelo db = new EntidadesSotelo())
                 {
-                    using (EntidadesSotelo db = new EntidadesSotelo())
-                    {
 
-                        if (sc.RolUsuarioLogueado != rg.RolMaster)
-                        {
-                            var badGuyIds = db.tbMenusRoles.Where(a => a.UsuarioId == pUsuarioId && a.cMenus.Estatus == true && a.Estatus == true).Select(a => a.MenuId).ToArray();
-                            var oDtosAcceso = db.cMenus.Where(p => !badGuyIds.Contains(p.MenuId)).Select(a => a.CSS).ToArray(); ;
-                            HttpContext.Current.Session["MenuCSS"] = oDtosAcceso.ToList();
-                        }
-
-
-                    }
+                    var badGuyIds = db.tbMenusRoles.Where(a => a.UsuarioId == pUsuarioId && !a.Estatus).Select(a => a.MenuId).ToArray();
+                    var oDtosAcceso = db.cMenus.Where(p => badGuyIds.Contains(p.MenuId)).Select(a => a.CSS).ToArray();
+                    HttpContext.Current.Session["MenuCSS"] = oDtosAcceso.ToList();
                 }
 
 
