@@ -37,7 +37,7 @@
 										<div class="form-group">
 											@Html.Label("", "Gastos Actuales", new { @class = "control-label" })
 											<div class="col-md-10">
-												@Html.DisplayFor(model => model.tbContabilidadViaje.Gastos, new { @class = "form-control", type = "number", min = Model.tbContabilidadViaje.Gastos })
+												@Html.DisplayFor(model => model.tbContabilidadViaje.Gastos, new { @class = "form-control", type = "number", step = ".01", min = Model.tbContabilidadViaje.Gastos })
 											</div>
 										</div>
 									</div>
@@ -47,7 +47,7 @@
 										<div class="form-group">
 											@Html.Label("", "Nuevo Gasto", new { @class = "control-label" })
 											<div class="col-md-10">
-												@Html.TextBoxFor(model => model.tbContabilidadViaje.Gastos, new { @class = "form-control", type = "number" })
+												@Html.TextBoxFor(model => model.tbContabilidadViaje.Gastos, new { @class = "form-control", type = "number", step = ".01" })
 												@Html.ValidationMessageFor(model => model.tbContabilidadViaje.Gastos, "", new { @class = "text-danger" })
 											</div>
 										</div>
@@ -58,7 +58,7 @@
 										<div class="form-group">
 											@Html.Label("", "Salario Neto", new { @class = "control-label" })
 											<div class="col-md-10">
-												@Html.TextBoxFor(model => model.tbContabilidadViaje.SalarioNeto, new { @class = "form-control", type = "number", @readonly = true })
+												@Html.TextBoxFor(model => model.tbContabilidadViaje.SalarioNeto, new { @class = "form-control", type = "number", step = ".01", @readonly = true })
 												@Html.ValidationMessageFor(model => model.tbContabilidadViaje.SalarioNeto, "", new { @class = "text-danger" })
 											</div>
 										</div>

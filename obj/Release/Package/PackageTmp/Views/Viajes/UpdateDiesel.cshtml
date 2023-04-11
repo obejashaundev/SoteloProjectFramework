@@ -37,7 +37,7 @@
 										<div class="form-group">
 											@Html.Label("", "Nuevo Monto", new { @class = "control-label" })
 											<div class="col-md-10">
-												@Html.TextBox("NuevoMonto", 0, new { @class = "form-control", type = "number" })
+												@Html.TextBox("NuevoMonto", 0, new { @class = "form-control", type = "number", step = ".01" })
 												@Html.ValidationMessageFor(model => model.tbContabilidadViaje.Diesel, "", new { @class = "text-danger" })
 											</div>
 										</div>
@@ -48,7 +48,7 @@
 										<div class="form-group">
 											@Html.Label("", "Monto Final", new { @class = "control-label" })
 											<div class="col-md-10">
-												@Html.TextBoxFor(model => model.tbContabilidadViaje.Diesel, new { @class = "form-control", type = "number", @readonly = true })
+												@Html.TextBoxFor(model => model.tbContabilidadViaje.Diesel, new { @class = "form-control", type = "number", step = ".01", @readonly = true })
 												@Html.ValidationMessageFor(model => model.tbContabilidadViaje.Diesel, "", new { @class = "text-danger" })
 											</div>
 										</div>
@@ -73,8 +73,12 @@
 @section scripts{
 	<script>
 		$(document).ready(function () {
+
+			let dieselActual = @Model.tbContabilidadViaje.Diesel
+
 			$('#NuevoMonto').on('keyup change', function () {
-				$('#tbContabilidadViaje_Diesel').val($(this).val())
+				let nuevoMonto = Number($(this).val()) + dieselActual
+				$('#tbContabilidadViaje_Diesel').val(nuevoMonto)
 			})
 		})
 	</script>

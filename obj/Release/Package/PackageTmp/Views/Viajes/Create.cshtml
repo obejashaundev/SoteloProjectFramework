@@ -28,7 +28,7 @@
 										<div class="form-group">
 											@Html.Label("", "Chofer", new { @class = "control-label" })
 											<div class="col-md-10">
-												@Html.DropDownListFor(model => model.Chofer.ChoferId, lsChoferes, new { @class = "form-control"})
+												@Html.DropDownListFor(model => model.Chofer.ChoferId, lsChoferes, new { @class = "form-control" })
 												@Html.ValidationMessageFor(model => model.Chofer.ChoferId, "", new { @class = "text-danger" })
 											</div>
 										</div>
@@ -57,7 +57,7 @@
 										<div class="form-group">
 											@Html.Label("", "Importe", new { @class = "control-label" })
 											<div class="col-md-10">
-												@Html.TextBoxFor(model => model.Contabilidad.Importe, new { @class = "form-control", type = "number" })
+												@Html.TextBoxFor(model => model.Contabilidad.Importe, new { @class = "form-control", type = "number", step = ".01" })
 												@Html.ValidationMessageFor(model => model.Contabilidad.Importe, "", new { @class = "text-danger" })
 											</div>
 										</div>
@@ -77,7 +77,7 @@
 										<div class="form-group">
 											@Html.Label("", "Salario Bruto del Chofer", new { @class = "control-label" })
 											<div class="col-md-10">
-												@Html.TextBoxFor(model => model.Contabilidad.SalarioBrutoChofer, new { @class = "form-control", type = "number", @readonly = true })
+												@Html.TextBoxFor(model => model.Contabilidad.SalarioBrutoChofer, new { @class = "form-control", type = "number", step = ".01", @readonly = true })
 												@Html.ValidationMessageFor(model => model.Contabilidad.SalarioBrutoChofer, "", new { @class = "text-danger" })
 											</div>
 										</div>
@@ -97,7 +97,7 @@
 										<div class="form-group">
 											@Html.Label("", "Gastos", new { @class = "control-label" })
 											<div class="col-md-10">
-												@Html.TextBoxFor(model => model.Contabilidad.Gastos, new { @class = "form-control", type = "number" })
+												@Html.TextBoxFor(model => model.Contabilidad.Gastos, new { @class = "form-control", type = "number", step = ".01" })
 												@Html.ValidationMessageFor(model => model.Contabilidad.Gastos, "", new { @class = "text-danger" })
 											</div>
 										</div>
@@ -108,7 +108,7 @@
 										<div class="form-group">
 											@Html.Label("", "Diesel", new { @class = "control-label" })
 											<div class="col-md-10">
-												@Html.TextBoxFor(model => model.Contabilidad.Diesel, new { @class = "form-control", type = "number" })
+												@Html.TextBoxFor(model => model.Contabilidad.Diesel, new { @class = "form-control", type = "number", step = ".01" })
 												@Html.ValidationMessageFor(model => model.Contabilidad.Diesel, "", new { @class = "text-danger" })
 											</div>
 										</div>
@@ -117,7 +117,7 @@
 										<div class="form-group">
 											@Html.Label("", "Salario Neto", new { @class = "control-label" })
 											<div class="col-md-10">
-												@Html.TextBoxFor(model => model.Contabilidad.SalarioNeto, new { @class = "form-control", type = "number", @readonly = true })
+												@Html.TextBoxFor(model => model.Contabilidad.SalarioNeto, new { @class = "form-control", type = "number", step = ".01", @readonly = true })
 												@Html.ValidationMessageFor(model => model.Contabilidad.SalarioNeto, "", new { @class = "text-danger" })
 											</div>
 										</div>
@@ -128,7 +128,7 @@
 										<div class="form-group">
 											@Html.Label("", "Ganancia", new { @class = "control-label" })
 											<div class="col-md-10">
-												@Html.TextBoxFor(model => model.Contabilidad.Ganancia, new { @class = "form-control", type = "number", @readonly = true })
+												@Html.TextBoxFor(model => model.Contabilidad.Ganancia, new { @class = "form-control", type = "number", step = ".01", @readonly = true })
 												@Html.ValidationMessageFor(model => model.Contabilidad.Ganancia, "", new { @class = "text-danger" })
 											</div>
 										</div>
