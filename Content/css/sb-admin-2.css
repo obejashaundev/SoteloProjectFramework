@@ -9804,7 +9804,7 @@ a:focus {
 
 #wrapper #content-wrapper #content {
   flex: 1 0 auto;
-  background-color: lightgray !important;
+  /*background-color: lightgray !important;*/
 }
 
 .container,
@@ -11279,5 +11279,5 @@ footer.sticky-footer .copyright {
 
 body.sidebar-toggled footer.sticky-footer {
   width: 100%;
-  background-color: lightgray !important;
+  /*background-color: lightgray !important;*/
 }

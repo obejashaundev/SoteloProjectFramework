@@ -1066,7 +1066,6 @@
     <Content Include="Views\Conductores\Details.cshtml" />
     <Content Include="Views\Conductores\Delete.cshtml" />
     <Content Include="Views\Viajes\Index.cshtml" />
-    <Content Include="Views\Conductores\Create.cshtml" />
     <Content Include="Views\Viajes\Create.cshtml" />
     <Content Include="Views\Viajes\HistoryDriver.cshtml" />
     <Content Include="Views\Viajes\Details.cshtml" />
@@ -1075,6 +1074,7 @@
     <Content Include="Views\Viajes\UpdateExpense.cshtml" />
     <Content Include="Views\Usuarios\Create.cshtml" />
     <Content Include="Views\Usuarios\ConfigPermissions.cshtml" />
+    <Content Include="Views\Conductores\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

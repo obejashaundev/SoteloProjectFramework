@@ -10,30 +10,36 @@
 <div class="container d-flex justify-content-around">
 
 	<div>
-		<div class="z-0 position-absolute  p-3 rounded bg-gradient-success text-light" style="width:12vw; height:10vw;">
-			<div class="z-n1 position-absolute p-3 rounded bg-gradient-primary" style="width:12vw; height:9vw;">
-				<a class="d-flex justify-content-center nav-link text-light" href="@Url.Action("Details", new { ChoferId = Model.ChoferId })">
-					Datos Personales
+		<div class="z-0 position-absolute  p-3 rounded text-light" style="width:12vw; height:10vw; background-color: #88A47C;">
+			<div class="z-n1 d-flex align-items-center justify-content-center position-absolute p-3 rounded" style="width:12vw; height:9vw; background-color: #2B4865;">
+				<a class="d-flex nav-link text-center text-light" href="@Url.Action("Details", new { ChoferId = Model.ChoferId })">
+					<h3>
+						Datos Personales
+					</h3>
 				</a>
 			</div>
 		</div>
 	</div>
 
 	<div>
-		<div class="z-0 position-absolute  p-3 rounded bg-gradient-success text-light" style="width:12vw; height:10vw;">
-			<div class="z-n1 position-absolute p-3 rounded bg-gradient-primary" style="width:12vw; height:9vw;">
-				<a class="d-flex justify-content-center nav-link text-light" href="@Url.Action("HistoryDriver", "Viajes", new { ChoferId = Model.ChoferId })">
-					Historial
+		<div class="z-0 position-absolute  p-3 rounded text-light" style="width:12vw; height:10vw; background-color: #88A47C;">
+			<div class="z-n1 d-flex align-items-center justify-content-center position-absolute p-3 rounded" style="width:12vw; height:9vw; background-color: #2B4865;">
+				<a class="d-flex nav-link text-center text-light" href="@Url.Action("HistoryDriver", "Viajes", new { ChoferId = Model.ChoferId })">
+					<h3>
+						Historial
+					</h3>
 				</a>
 			</div>
 		</div>
 	</div>
 
 	<div>
-		<div class="z-0 position-absolute  p-3 rounded bg-gradient-success text-light" style="width:12vw; height:10vw;">
-			<div class="z-n1 position-absolute p-3 rounded bg-gradient-primary" style="width:12vw; height:9vw;">
-				<a class="d-flex justify-content-center nav-link text-light" href="@Url.Action("Create2", "Viajes", new { ChoferId = Model.ChoferId })">
-					Nuevo Registro
+		<div class="z-0 position-absolute  p-3 rounded text-light" style="width:12vw; height:10vw; background-color: #88A47C;">
+			<div class="z-n1 d-flex align-items-center justify-content-center position-absolute p-3 rounded" style="width:12vw; height:9vw; background-color: #2B4865;">
+				<a class="d-flex nav-link text-center text-light" href="@Url.Action("Create2", "Viajes", new { ChoferId = Model.ChoferId })">
+					<h3>
+						Nuevo Registro
+					</h3>
 				</a>
 			</div>
 		</div>

@@ -41,12 +41,12 @@
 					<th>
 						Contraseña
 					</th>
-					<th>
+					@*<th>
 						@Html.DisplayNameFor(model => model.Estatus)
 					</th>
 					<th>
 						@Html.DisplayNameFor(model => model.Eliminado)
-					</th>
+					</th>*@
 					<th>
 						<i class="fa fa-tools"></i>
 					</th>
@@ -76,12 +76,12 @@
 						<td>
 							@Html.DisplayFor(modelItem => item.Contrasenia)
 						</td>
-						<td>
+						@*<td>
 							@Html.DisplayFor(modelItem => item.Estatus)
 						</td>
 						<td>
 							@Html.DisplayFor(modelItem => item.Eliminado)
-						</td>
+						</td>*@
 						<td>
 							@*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
 								@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |

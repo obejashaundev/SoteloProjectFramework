@@ -36,8 +36,8 @@ namespace SoteloProjectFramework.Models
 
     public class ModeloExtendidoChofer
     {
-        public tbChoferes Chofer { get; set; }
-        public tbDetallesChoferes DetalleChofer { get; set; }
+        public tbChoferes Chofer = new tbChoferes();
+        public tbDetallesChoferes DetalleChofer = new tbDetallesChoferes();
     }
 
     public class ModeloExtendidoViaje

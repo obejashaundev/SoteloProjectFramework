@@ -13,12 +13,12 @@
 	@Html.AntiForgeryToken()
 
 	<div class="container d-flex justify-content-center">
-		<div style="height: max-content; margin-top: 1vh; border-radius: 40px; background: rgba(39, 60, 117,0.9);">
-			<div class="bg-light w-100" style="margin-left: 1vw; margin-top: 2vh; border-radius: 40px;">
+		<div style="width: 100%; height: max-content; margin-top: 1vh; border-radius: 40px; background: #88A47C;">
+			<div class="w-100" style="margin-left: 1vw; margin-top: 2vh; border-radius: 40px; background: #2B4865;">
 				<div class="row justify-content-center">
 					<div class="col-md-10">
 						<div class="d-flex justify-content-center">
-							<h3 class="text-light rounded-pill w-75 text-center" style="background: rgba(39, 60, 117,0.9);">@ViewBag.Title</h3>
+							<h3 class="rounded-pill w-75 text-center" style="background: #FBFFFD;">@ViewBag.Title</h3>
 						</div>
 						<div id="loginForm">
 							@Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -136,7 +136,7 @@
 								</div>
 								<div class="row justify-content-end pb-3">
 									<div class="col-md-3">
-										<input type="submit" value="Registrar" class="btn btn-secondary" />
+										<input type="submit" value="Registrar" class="btn btn-light" />
 									</div>
 								</div>
 							</div>
