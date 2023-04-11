@@ -124,7 +124,7 @@ namespace SoteloProjectFramework.Controllers
                 var viaje = db.tbViajes.FirstOrDefault(x => x.ViajeId == model.ViajeId);
                 var contabilidad = viaje.tbContabilidadViaje;
                 contabilidad.Diesel = model.tbContabilidadViaje.Diesel;
-                contabilidad.Ganancia = (contabilidad.Importe - (contabilidad.Diesel + contabilidad.SalarioNeto)).GetValueOrDefault();
+                contabilidad.Ganancia = (contabilidad.Importe - (contabilidad.Diesel + contabilidad.SalarioBrutoChofer)).GetValueOrDefault();
                 db.SaveChanges();
                 return RedirectToAction("HistoryDriver", new { ChoferId = model.ChoferId });
             }
@@ -156,9 +156,9 @@ namespace SoteloProjectFramework.Controllers
             {
                 var viaje = db.tbViajes.FirstOrDefault(x => x.ViajeId == model.ViajeId);
                 var contabilidad = viaje.tbContabilidadViaje;
-                contabilidad.Gastos = model.tbContabilidadViaje.Gastos;
+                contabilidad.Gastos += model.tbContabilidadViaje.Gastos;
                 contabilidad.SalarioNeto = model.tbContabilidadViaje.SalarioNeto;
-                contabilidad.Ganancia = (contabilidad.Importe - (contabilidad.Diesel + contabilidad.SalarioNeto)).GetValueOrDefault();
+                //contabilidad.Ganancia = (contabilidad.Importe - (contabilidad.Diesel + contabilidad.SalarioNeto)).GetValueOrDefault();
                 db.SaveChanges();
                 return RedirectToAction("HistoryDriver", new { ChoferId = model.ChoferId });
             }

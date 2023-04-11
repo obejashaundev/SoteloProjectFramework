@@ -1,0 +1,238 @@
+﻿@model SoteloProjectFramework.Models.ModeloExtendidoViaje
+
+@{
+	ViewBag.Title = "Datos Generales";
+	Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+	IEnumerable<SelectListItem> lsChoferes = ViewBag.lsChoferes;
+	bool Direct = ViewBag.Direct;
+	string Hoy = ViewBag.Hoy;
+}
+
+@using (Html.BeginForm("Create", "Viajes", FormMethod.Post))
+{
+	@Html.AntiForgeryToken()
+
+	<div class="container d-flex justify-content-center">
+		<div style="height: max-content; margin-top: 1vh; border-radius: 40px; background: rgba(39, 60, 117,0.9);">
+			<div class="bg-light w-100" style="margin-left: 1vw; margin-top: 2vh; border-radius: 40px;">
+				<div class="row justify-content-center">
+					<div class="col-md-10">
+						<div class="d-flex justify-content-center">
+							<h3 class="text-light rounded-pill w-75 text-center" style="background: rgba(39, 60, 117,0.9);">@ViewBag.Title</h3>
+						</div>
+						<div id="loginForm">
+							@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+							<div class="form-horizontal">
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											@Html.Label("", "Chofer", new { @class = "control-label" })
+											<div class="col-md-10">
+												@Html.DropDownListFor(model => model.Chofer.ChoferId, lsChoferes, new { @class = "form-control"})
+												@Html.ValidationMessageFor(model => model.Chofer.ChoferId, "", new { @class = "text-danger" })
+											</div>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											@Html.Label("", "Fecha", new { @class = "control-label" })
+											<div class="col-md-10">
+												@Html.TextBoxFor(model => model.Viajes.Fecha, new { @class = "form-control", type = "date" })
+												@Html.ValidationMessageFor(model => model.Viajes.Fecha, "", new { @class = "text-danger" })
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											@Html.Label("", "Folio", new { @class = "control-label" })
+											<div class="col-md-10">
+												@Html.TextBoxFor(model => model.Viajes.Folio, new { @class = "form-control" })
+												@Html.ValidationMessageFor(model => model.Viajes.Folio, "", new { @class = "text-danger" })
+											</div>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											@Html.Label("", "Importe", new { @class = "control-label" })
+											<div class="col-md-10">
+												@Html.TextBoxFor(model => model.Contabilidad.Importe, new { @class = "form-control", type = "number" })
+												@Html.ValidationMessageFor(model => model.Contabilidad.Importe, "", new { @class = "text-danger" })
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											@Html.Label("", "Lugar inicio", new { @class = "control-label" })
+											<div class="col-md-10">
+												@Html.TextBoxFor(model => model.Viajes.LugarOrigen, new { @class = "form-control" })
+												@Html.ValidationMessageFor(model => model.Viajes.LugarOrigen, "", new { @class = "text-danger" })
+											</div>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											@Html.Label("", "Salario Bruto del Chofer", new { @class = "control-label" })
+											<div class="col-md-10">
+												@Html.TextBoxFor(model => model.Contabilidad.SalarioBrutoChofer, new { @class = "form-control", type = "number", @readonly = true })
+												@Html.ValidationMessageFor(model => model.Contabilidad.SalarioBrutoChofer, "", new { @class = "text-danger" })
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											@Html.Label("", "Lugar destino", new { @class = "control-label" })
+											<div class="col-md-10">
+												@Html.TextBoxFor(model => model.Viajes.LugarDestino, new { @class = "form-control" })
+												@Html.ValidationMessageFor(model => model.Viajes.LugarDestino, "", new { @class = "text-danger" })
+											</div>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											@Html.Label("", "Gastos", new { @class = "control-label" })
+											<div class="col-md-10">
+												@Html.TextBoxFor(model => model.Contabilidad.Gastos, new { @class = "form-control", type = "number" })
+												@Html.ValidationMessageFor(model => model.Contabilidad.Gastos, "", new { @class = "text-danger" })
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											@Html.Label("", "Diesel", new { @class = "control-label" })
+											<div class="col-md-10">
+												@Html.TextBoxFor(model => model.Contabilidad.Diesel, new { @class = "form-control", type = "number" })
+												@Html.ValidationMessageFor(model => model.Contabilidad.Diesel, "", new { @class = "text-danger" })
+											</div>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											@Html.Label("", "Salario Neto", new { @class = "control-label" })
+											<div class="col-md-10">
+												@Html.TextBoxFor(model => model.Contabilidad.SalarioNeto, new { @class = "form-control", type = "number", @readonly = true })
+												@Html.ValidationMessageFor(model => model.Contabilidad.SalarioNeto, "", new { @class = "text-danger" })
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6 offset-6">
+										<div class="form-group">
+											@Html.Label("", "Ganancia", new { @class = "control-label" })
+											<div class="col-md-10">
+												@Html.TextBoxFor(model => model.Contabilidad.Ganancia, new { @class = "form-control", type = "number", @readonly = true })
+												@Html.ValidationMessageFor(model => model.Contabilidad.Ganancia, "", new { @class = "text-danger" })
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row justify-content-end pb-3">
+									<div class="col-md-3">
+										<input type="submit" value="Registrar" class="btn btn-secondary" />
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+}
+@section scripts{
+	<script>
+
+		function calcularSalarioNeto() {
+			let gastos = parseInt($('#Contabilidad_Gastos').val())
+			let salarioBrutoChofer = parseInt($('#Contabilidad_SalarioBrutoChofer').val())
+
+			gastos = isNaN(gastos) ? 0 : gastos
+			salarioBrutoChofer = isNaN(salarioBrutoChofer) ? 0 : salarioBrutoChofer
+
+			$('#Contabilidad_SalarioNeto').val(salarioBrutoChofer - gastos)
+		}
+
+		function calcularGanancia() {
+			let importe = parseInt($('#Contabilidad_Importe').val())
+			let diesel = parseInt($('#Contabilidad_Diesel').val())
+			calcularSalarioNeto()
+
+			let salarioBrutoChofer = parseInt($('#Contabilidad_SalarioBrutoChofer').val())
+
+			importe = isNaN(importe) ? 0 : importe
+			diesel = isNaN(diesel) ? 0 : diesel
+
+			salarioBrutoChofer = isNaN(salarioBrutoChofer) ? 0 : salarioBrutoChofer
+			let ganancia = importe - (diesel + salarioBrutoChofer)
+			$('#Contabilidad_Ganancia').val(ganancia)
+		}
+
+		$(document).ready(function () {
+			$('#Viajes_Fecha').val('@Hoy')
+
+			$('#Contabilidad_Gastos').on('keyup change', function () {
+				calcularSalarioNeto()
+				calcularGanancia()
+			})
+
+			//$('#Contabilidad_SalarioBrutoChofer').on('keyup', function () {
+			//	let gastos = parseInt($('#Contabilidad_Gastos').val())
+			//	let salarioBrutoChofer = parseInt($('#Contabilidad_SalarioBrutoChofer').val())
+
+			//	gastos = isNaN(gastos) ? 0 : gastos
+			//	salarioBrutoChofer = isNaN(salarioBrutoChofer) ? 0 : salarioBrutoChofer
+
+			//	$('#Contabilidad_SalarioNeto').val(salarioBrutoChofer - gastos)
+			//	calcularGanancia()
+			//})
+
+			$('#Contabilidad_Importe').on('keyup change', function () {
+				let value = $(this).val()
+				let salario = value * 0.15
+				$('#Contabilidad_SalarioBrutoChofer').val(salario)
+				calcularGanancia()
+			})
+
+			$('#Contabilidad_Diesel').on('keyup change', function () {
+				calcularGanancia()
+			})
+
+			@{
+				string DirectStr = Direct ? "true" : "false";
+			}
+
+			if (!@DirectStr) {
+				$('#Chofer_ChoferId').select2({
+					placeholder: 'Seleccione'
+				})
+			}
+
+			$('form').on('submit', function (e) {
+				e.preventDefault()
+
+				Swal.fire({
+					title: '¡Atención!',
+					text: 'Asegúrese que la información del viaje sea correcta antes de continuar.',
+					icon: 'warning',
+					showCancelButton: true,
+					cancelButtonText: 'Cancelar',
+					confirmButton: true,
+					confirmButtonText: 'Ya la verifiqué, continuar'
+				}).then((result) => {
+					if (result.isConfirmed) {
+						$('form').unbind('submit').submit();
+					}
+				})
+			})
+		})
+	</script>
+}

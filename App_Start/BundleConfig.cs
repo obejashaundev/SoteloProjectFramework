@@ -26,7 +26,7 @@ namespace SoteloProjectFramework
                       ));
 
 
-            bundles.Add(new StyleBundle("~/Content/css").Include(
+            bundles.Add(new StyleBundle("~/Content/cssMainPage").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/lib/sweetalert2/dist/sweetalert2.css",
                       "~/Content/site.css"));
@@ -39,6 +39,7 @@ namespace SoteloProjectFramework
                       "~/Content/lib/sweetalert2/dist/sweetalert2.css",
                       "~/Content/lib/font-awesome/css/all.css",
                       "~/Content/lib/font-awesome/css/fontawesome.css",
+                      "~/Content/lib/font-awesome/css/solid.css",
                       "~/Content/lib/select2/dist/css/select2.css"));
             
             bundles.Add(new Bundle("~/bundles/libraries").Include(
@@ -48,6 +49,7 @@ namespace SoteloProjectFramework
                         "~/Content/lib/sweetalert2/dist/sweetalert2.js",
                         "~/Content/lib/font-awesome/js/all.js",
                         "~/Content/lib/font-awesome/js/fontawesome.js",
+                        "~/Content/lib/font-awesome/js/solid.js",
                         "~/Content/lib/select2/dist/js/select2.js"));
         }
     }

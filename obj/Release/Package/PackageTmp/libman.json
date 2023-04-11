@@ -1,0 +1,42 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "Chart.js@4.2.1",
+      "destination": "Content/lib/Chart.js/"
+    },
+    {
+      "library": "font-awesome@6.3.0",
+      "destination": "Content/lib/font-awesome/"
+    },
+    {
+      "library": "datatables.net-bs4@3.2.2",
+      "destination": "Content/lib/datatables/"
+    },
+    {
+      "provider": "jsdelivr",
+      "library": "sweetalert2@11.7.3",
+      "destination": "Content/lib/sweetalert2/"
+    },
+    {
+      "provider": "jsdelivr",
+      "library": "@sweetalert2/theme-bootstrap-4@5.0.15",
+      "destination": "Content/lib/sweetalert2/theme-bootstrap-4/"
+    },
+    {
+      "library": "datatables.net@2.1.1",
+      "destination": "Content/lib/datatables.net/"
+    },
+    {
+      "provider": "jsdelivr",
+      "library": "chart.js@4.2.1",
+      "destination": "Content/lib/chart.js/"
+    },
+    {
+      "provider": "jsdelivr",
+      "library": "select2@4.1.0-rc.0",
+      "destination": "Content/lib/select2/"
+    }
+  ]
+}

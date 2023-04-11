@@ -1,0 +1,125 @@
+﻿@model IEnumerable<SoteloProjectFramework.Models.tbUsuarios>
+
+@{
+	ViewBag.Title = "Usuarios";
+	Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container">
+	<div class="row mt-3">
+		<div class="col-md-12">
+			<h2>Usuarios</h2>
+		</div>
+	</div>
+	<div class="row mt-3">
+		<div class="col-md-12">
+			<a href="@Url.Action("Create")" class="btn btn-primary"><i class="fa fa-add"></i> Nuevo usuario</a>
+		</div>
+	</div>
+	<div class="row mt-3">
+		<div class="col-md-12">
+			<table class="table table-responsive">
+				<tr>
+					<th>
+						Rol
+					</th>
+					<th>
+						Usuario
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.Nombres)
+					</th>
+					<th>
+						Apellido 1
+					</th>
+					<th>
+						Apellido 2
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.Email)
+					</th>
+					<th>
+						Contraseña
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.Estatus)
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.Eliminado)
+					</th>
+					<th>
+						<i class="fa fa-tools"></i>
+					</th>
+				</tr>
+
+				@foreach (var item in Model)
+				{
+					<tr>
+						<td>
+							@Html.DisplayFor(modelItem => item.AspNetRoles.Name)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.UserName)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.Nombres)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.PrimerApellido)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.SegundoApellido)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.Email)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.Contrasenia)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.Estatus)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.Eliminado)
+						</td>
+						<td>
+							@*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+								@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+								@Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+							<div class="btn-toolbar">
+								<div class="btn-group">
+									@*<a class="btn btn-info">
+										<i class="fa fa-info-circle"></i>
+									</a>*@
+									<a class="btn btn-info" href="@Url.Action("ConfigPermissions", new { UsuarioId = item.UsuarioId })">
+										<i class="fa fa-low-vision"></i>
+									</a>
+									@*<button class="btn btn-danger" onclick="eliminarUsuario(@item.UsuarioId)">
+										<i class="fa fa-trash-alt"></i>
+									</button>*@
+								</div>
+							</div>
+						</td>
+					</tr>
+				}
+
+			</table>
+		</div>
+	</div>
+</div>
+
+@section scripts{
+	<script>
+		function eliminarUsuario(userId) {
+			Swal.fire({
+				title: '¿Está seguro de realizar esta operación?',
+				text: 'Los cambios realizados serán irrevocables',
+				icon: 'question',
+				confirmButtonText: 'Si, continuar'
+			})
+		}
+		$(document).ready(function () {
+
+		})
+	</script>
+}

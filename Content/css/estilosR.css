@@ -7,6 +7,13 @@
     height: 130vh;
     margin-bottom: 5vh;
 }
+#Sotelo2 {
+    background-image: url("../img/fondoBlur.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 130vh;
+    margin-bottom: 5vh;
+}
 
 
 h1, h2 {

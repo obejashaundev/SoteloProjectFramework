@@ -1,0 +1,48 @@
+﻿body {
+}
+
+.contenedor {
+    width:70vw;
+    height:80vh;
+    margin-left:10vw;
+    
+}
+
+
+.form {
+    height:50vh;
+    background-color:red;
+}
+.inside {
+    height: 40vh;
+    width: 20vw;
+    border-radius: 10px;
+    margin-left: 10vw;
+    background-color: whitesmoke;
+    border-radius:20px;
+}
+
+.detalles {
+    height: 3vh;
+    width: 8vw;
+    background-color: rgba(25, 42, 86,0.8);
+}
+
+#contenido {
+    height:10vw;
+}
+
+.btn{
+    background-color: rgba(184, 233, 148,1.0);
+}
+
+#navbar {
+    width:5vw;
+}
+
+
+.contenedor-actualizar {
+    width: 70vw;
+    height: 80vh;
+    margin-left: 25vw;
+}

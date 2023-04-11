@@ -9804,6 +9804,7 @@ a:focus {
 
 #wrapper #content-wrapper #content {
   flex: 1 0 auto;
+  background-color: lightgray !important;
 }
 
 .container,
@@ -10419,10 +10420,10 @@ a:focus {
 }
 
 .sidebar #sidebarToggle::after {
-  font-weight: 900;
-  content: '\f104';
-  font-family: 'Font Awesome 5 Free';
-  margin-right: 0.1rem;
+  /*font-weight: 900;
+  content: '\f105';
+  font-family: 'Font Awesome 6 Free';
+  margin-right: 0.1rem;*/
 }
 
 .sidebar #sidebarToggle:hover {
@@ -10439,9 +10440,9 @@ a:focus {
 }
 
 .sidebar.toggled #sidebarToggle::after {
-  content: '\f105';
-  font-family: 'Font Awesome 5 Free';
-  margin-left: 0.25rem;
+  /*content: '\f105';
+  font-family: 'Font Awesome 6 Free';
+  margin-left: 0.25rem;*/
 }
 
 .sidebar.toggled .sidebar-card {
@@ -11278,4 +11279,5 @@ footer.sticky-footer .copyright {
 
 body.sidebar-toggled footer.sticky-footer {
   width: 100%;
+  background-color: lightgray !important;
 }

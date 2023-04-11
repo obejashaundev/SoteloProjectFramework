@@ -7,56 +7,38 @@
 
 
 
-<body id="Sotelo">
+<body id="Sotelo2">
     <div class="container d-flex justify-content-center" style="height:80vh;">
         <div class="z-0 position-absolute w-25" style="height:max-content;  margin-top: 1vh; border-radius: 40px; background: rgba(39, 60, 117,0.9);">
-            
             <div class="bg-light w-100" style="margin-left: 1vw; margin-top: 2vh; border-radius: 40px;">
-                
-                <div class="row justify-content-end">
-
-                    
-                        
-                    
-                    
+                <div class="row justify-content-center">
                     <div class="col-md-10">
-
                         <div class="d-flex justify-content-center">
-
-                            
-
                                 <h3 class="text-light rounded-pill w-75 text-center" style="background: rgba(39, 60, 117,0.9);">@ViewBag.Title.</h3>
-                            
-
                         </div>
-                      
-
-                        <section id="loginForm">
-
-
+                        <section id="loginForm" class="container pb-5">
                             @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
                             {
                                 @Html.AntiForgeryToken()
-                                <h4 >Utilice sus credenciales para iniciar sesión.</h4>
 
                                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                                 <div class="row justify-content-center">
-                                    @Html.LabelFor(m => m.UserName, new { @class = "col-md-10 col-form-label " })
-                                    <div class="col-md-10">
+                                    <div class="col-md-12">
+                                        @Html.LabelFor(m => m.UserName, new { @class = "col-md-10 col-form-label " })
                                         @Html.TextBoxFor(m => m.UserName, new { @class = "form-control rounded-pill" })
                                         @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
                                 <div class="row justify-content-center">
-                                    @Html.LabelFor(m => m.Password, new { @class = "col-md-10 col-form-label" })
-                                    <div class="col-md-10">
+                                    <div class="col-md-12">
+                                        @Html.LabelFor(m => m.Password, new { @class = "col-md-10 col-form-label" })
                                         @Html.PasswordFor(m => m.Password, new { @class = "form-control rounded-pill" })
                                         @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
 
-                                <div class="row justify-content-center">
-                                    <div class="offset-md-2 col-md-10">
+                                <div class="row justify-content-center pt-2">
+                                    <div class="col-md-12 text-center">
                                         <div class="checkbox">
                                             @Html.CheckBoxFor(m => m.RememberMe)
                                             @Html.LabelFor(m => m.RememberMe)
@@ -64,50 +46,17 @@
                                     </div>
                                 </div>
                                 <div class="row justify-content-center">
-                                    <div class="offset-md-6 col-md-10">
+                                    <div class="col-md-12 text-center">
                                         <input type="submit" value="Iniciar sesión" class="btn btn-outline-dark" />
                                     </div>
                                 </div>
-
-
-
-                                <p>
-                                    @*@Html.ActionLink("Registrarse como usuario nuevo", "Register")*@
-                                </p>
-                                @* Habilite esta opción una vez tenga la confirmación de la cuenta habilitada para la funcionalidad de restablecimiento de contraseña
-                <p>
-                    @Html.ActionLink("¿Ha olvidado su contraseña?", "ForgotPassword")
-                </p>*@
                             }
                         </section>
                     </div>
-                    @*<div class="col-md-4">
-            <section id="socialLoginForm">
-                @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-            </section>
-        </div>*@
                 </div>
             </div>
         </div>
-
-
-
-
-       
-        
-            
-        
-
-
-
-        
-
-
-
-
-
     </div>
-
 </body>
 
 

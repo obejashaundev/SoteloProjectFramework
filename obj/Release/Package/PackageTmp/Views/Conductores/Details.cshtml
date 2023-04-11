@@ -1,0 +1,248 @@
+﻿@model SoteloProjectFramework.Models.ModeloExtendidoChofer
+
+@{
+	ViewBag.Title = "Detalle Chofer";
+	Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+	IEnumerable<SelectListItem> lsCategoriasChofer = ViewBag.lsCategoriasChofer;
+}
+
+<div class="container d-flex justify-content-center">
+	<div style="margin-top: 1vh; border-radius: 40px; background: rgba(39, 60, 117,0.9);">
+		<div class="bg-light w-100" style="margin-left: 1vw; margin-top: 2vh; border-radius: 40px;">
+			<div class="row justify-content-center">
+				<div class="col-md-10">
+					<div class="d-flex justify-content-center">
+						<h3 class="text-light rounded-pill w-75 text-center" style="background: rgba(39, 60, 117,0.9);">@ViewBag.Title</h3>
+					</div>
+					<section id="loginForm">
+						<div class="custom-control custom-switch mt-2">
+							<input type="checkbox" class="custom-control-input" id="swHabilitarEdicion">
+							<label class="custom-control-label" for="swHabilitarEdicion">Habilitar Edición</label>
+						</div>
+						<hr />
+						@using (Html.BeginForm("Update", "Conductores", FormMethod.Post, new { role = "form" }))
+						{
+							@Html.AntiForgeryToken()
+							@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+							<div class="form-horizontal">
+								@Html.HiddenFor(model => model.Chofer.ChoferId)
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											@Html.LabelFor(model => model.Chofer.CategoriaChoferId, htmlAttributes: new { @class = "control-label col-md-2" })
+											@Html.DropDownListFor(model => model.Chofer.CategoriaChoferId, lsCategoriasChofer, "-- Seleccione una opción --", new { @class = "form-control" })
+											@Html.ValidationMessageFor(model => model.Chofer.CategoriaChoferId, "", new { @class = "text-danger" })
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											@Html.LabelFor(model => model.Chofer.Nombres, htmlAttributes: new { @class = "control-label col-md-2" })
+											@Html.EditorFor(model => model.Chofer.Nombres, new { htmlAttributes = new { @class = "form-control" } })
+											@Html.ValidationMessageFor(model => model.Chofer.Nombres, "", new { @class = "text-danger" })
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											@Html.LabelFor(model => model.Chofer.PrimerApellido, htmlAttributes: new { @class = "control-label col-md-2" })
+											@Html.EditorFor(model => model.Chofer.PrimerApellido, new { htmlAttributes = new { @class = "form-control" } })
+											@Html.ValidationMessageFor(model => model.Chofer.PrimerApellido, "", new { @class = "text-danger" })
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											@Html.LabelFor(model => model.Chofer.SegundoApellido, htmlAttributes: new { @class = "control-label col-md-2" })
+											@Html.EditorFor(model => model.Chofer.SegundoApellido, new { htmlAttributes = new { @class = "form-control" } })
+											@Html.ValidationMessageFor(model => model.Chofer.SegundoApellido, "", new { @class = "text-danger" })
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											@Html.LabelFor(model => model.DetalleChofer.Edad, htmlAttributes: new { @class = "control-label col-md-2" })
+											@Html.EditorFor(model => model.DetalleChofer.Edad, new { htmlAttributes = new { @class = "form-control" } })
+											@Html.ValidationMessageFor(model => model.DetalleChofer.Edad, "", new { @class = "text-danger" })
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											@Html.LabelFor(model => model.DetalleChofer.FechaNacimiento, htmlAttributes: new { @class = "control-label col-md-2" })
+											@Html.EditorFor(model => model.DetalleChofer.FechaNacimientoStr, new { htmlAttributes = new { @class = "form-control", type = "date" } })
+											@Html.ValidationMessageFor(model => model.DetalleChofer.FechaNacimiento, "", new { @class = "text-danger" })
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											@Html.LabelFor(model => model.DetalleChofer.LicenciaConducir, htmlAttributes: new { @class = "control-label col-md-2" })
+											@Html.EditorFor(model => model.DetalleChofer.LicenciaConducir, new { htmlAttributes = new { @class = "form-control" } })
+											@Html.ValidationMessageFor(model => model.DetalleChofer.LicenciaConducir, "", new { @class = "text-danger" })
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											@Html.LabelFor(model => model.DetalleChofer.NSS, htmlAttributes: new { @class = "control-label col-md-2" })
+											@Html.EditorFor(model => model.DetalleChofer.NSS, new { htmlAttributes = new { @class = "form-control" } })
+											@Html.ValidationMessageFor(model => model.DetalleChofer.NSS, "", new { @class = "text-danger" })
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											@Html.LabelFor(model => model.DetalleChofer.Unidad, htmlAttributes: new { @class = "control-label col-md-2" })
+											@Html.EditorFor(model => model.DetalleChofer.Unidad, new { htmlAttributes = new { @class = "form-control" } })
+											@Html.ValidationMessageFor(model => model.DetalleChofer.Unidad, "", new { @class = "text-danger" })
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											@Html.LabelFor(model => model.DetalleChofer.PlacasUnidad, htmlAttributes: new { @class = "control-label col-md-2" })
+											@Html.EditorFor(model => model.DetalleChofer.PlacasUnidad, new { htmlAttributes = new { @class = "form-control" } })
+											@Html.ValidationMessageFor(model => model.DetalleChofer.PlacasUnidad, "", new { @class = "text-danger" })
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12">
+										<div class="form-group">
+											@Html.LabelFor(model => model.DetalleChofer.DescripcionUnidad, htmlAttributes: new { @class = "control-label col-md-2" })
+											@Html.EditorFor(model => model.DetalleChofer.DescripcionUnidad, new { htmlAttributes = new { @class = "form-control" } })
+											@Html.ValidationMessageFor(model => model.DetalleChofer.DescripcionUnidad, "", new { @class = "text-danger" })
+										</div>
+									</div>
+								</div>
+								<div class="row justify-content-center pb-3">
+									<div class="col-md-12 text-center">
+										<a href="@Url.Action("Info", new { ChoferId = Model.Chofer.ChoferId })" class="btn btn-sm btn-light">Volver</a>
+										<input type="submit" value="Guardar" class="btn btn-success" />
+									</div>
+								</div>
+							</div>
+						}
+					</section>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+@*<div>
+		<h3>Detalle Chofer</h3>
+		<div class="custom-control custom-switch mt-2">
+			<input type="checkbox" class="custom-control-input" id="swHabilitarEdicion">
+			<label class="custom-control-label" for="swHabilitarEdicion">Habilitar Edición</label>
+		</div>
+		<hr />
+		<dl class="dl-horizontal">
+		</dl>
+		@using (Html.BeginForm("Update", "Conductores", FormMethod.Post))
+		{
+			@Html.AntiForgeryToken()
+
+			<div class="form-horizontal">
+				@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+				@Html.HiddenFor(model => model.Chofer.ChoferId)
+				<div class="form-group">
+					@Html.LabelFor(model => model.Chofer.CategoriaChoferId, htmlAttributes: new { @class = "control-label col-md-2" })
+					<div class="col-md-10">
+						@Html.DropDownListFor(model => model.Chofer.CategoriaChoferId, lsCategoriasChofer, "-- Seleccione una opción --", new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.Chofer.CategoriaChoferId, "", new { @class = "text-danger" })
+					</div>
+				</div>
+				<div class="form-group">
+					@Html.LabelFor(model => model.Chofer.Nombres, htmlAttributes: new { @class = "control-label col-md-2" })
+					<div class="col-md-10">
+						@Html.EditorFor(model => model.Chofer.Nombres, new { htmlAttributes = new { @class = "form-control" } })
+						@Html.ValidationMessageFor(model => model.Chofer.Nombres, "", new { @class = "text-danger" })
+					</div>
+				</div>
+				<div class="form-group">
+					@Html.LabelFor(model => model.Chofer.PrimerApellido, htmlAttributes: new { @class = "control-label col-md-2" })
+					<div class="col-md-10">
+						@Html.EditorFor(model => model.Chofer.PrimerApellido, new { htmlAttributes = new { @class = "form-control" } })
+						@Html.ValidationMessageFor(model => model.Chofer.PrimerApellido, "", new { @class = "text-danger" })
+					</div>
+				</div>
+				<div class="form-group">
+					@Html.LabelFor(model => model.Chofer.SegundoApellido, htmlAttributes: new { @class = "control-label col-md-2" })
+					<div class="col-md-10">
+						@Html.EditorFor(model => model.Chofer.SegundoApellido, new { htmlAttributes = new { @class = "form-control" } })
+						@Html.ValidationMessageFor(model => model.Chofer.SegundoApellido, "", new { @class = "text-danger" })
+					</div>
+				</div>
+				<div class="form-group">
+					@Html.LabelFor(model => model.DetalleChofer.Edad, htmlAttributes: new { @class = "control-label col-md-2" })
+					<div class="col-md-10">
+						@Html.EditorFor(model => model.DetalleChofer.Edad, new { htmlAttributes = new { @class = "form-control" } })
+						@Html.ValidationMessageFor(model => model.DetalleChofer.Edad, "", new { @class = "text-danger" })
+					</div>
+				</div>
+				<div class="form-group">
+					@Html.LabelFor(model => model.DetalleChofer.FechaNacimiento, htmlAttributes: new { @class = "control-label col-md-2" })
+					<div class="col-md-10">
+						@Html.EditorFor(model => model.DetalleChofer.FechaNacimientoStr, new { htmlAttributes = new { @class = "form-control", type = "date" } })
+						@Html.ValidationMessageFor(model => model.DetalleChofer.FechaNacimiento, "", new { @class = "text-danger" })
+					</div>
+				</div>
+				<div class="form-group">
+					@Html.LabelFor(model => model.DetalleChofer.LicenciaConducir, htmlAttributes: new { @class = "control-label col-md-2" })
+					<div class="col-md-10">
+						@Html.EditorFor(model => model.DetalleChofer.LicenciaConducir, new { htmlAttributes = new { @class = "form-control" } })
+						@Html.ValidationMessageFor(model => model.DetalleChofer.LicenciaConducir, "", new { @class = "text-danger" })
+					</div>
+				</div>
+				<div class="form-group">
+					@Html.LabelFor(model => model.DetalleChofer.NSS, htmlAttributes: new { @class = "control-label col-md-2" })
+					<div class="col-md-10">
+						@Html.EditorFor(model => model.DetalleChofer.NSS, new { htmlAttributes = new { @class = "form-control" } })
+						@Html.ValidationMessageFor(model => model.DetalleChofer.NSS, "", new { @class = "text-danger" })
+					</div>
+				</div>
+				<div class="form-group">
+					@Html.LabelFor(model => model.DetalleChofer.Unidad, htmlAttributes: new { @class = "control-label col-md-2" })
+					<div class="col-md-10">
+						@Html.EditorFor(model => model.DetalleChofer.Unidad, new { htmlAttributes = new { @class = "form-control" } })
+						@Html.ValidationMessageFor(model => model.DetalleChofer.Unidad, "", new { @class = "text-danger" })
+					</div>
+				</div>
+				<div class="form-group">
+					@Html.LabelFor(model => model.DetalleChofer.PlacasUnidad, htmlAttributes: new { @class = "control-label col-md-2" })
+					<div class="col-md-10">
+						@Html.EditorFor(model => model.DetalleChofer.PlacasUnidad, new { htmlAttributes = new { @class = "form-control" } })
+						@Html.ValidationMessageFor(model => model.DetalleChofer.PlacasUnidad, "", new { @class = "text-danger" })
+					</div>
+				</div>
+				<div class="form-group">
+					@Html.LabelFor(model => model.DetalleChofer.DescripcionUnidad, htmlAttributes: new { @class = "control-label col-md-2" })
+					<div class="col-md-10">
+						@Html.EditorFor(model => model.DetalleChofer.DescripcionUnidad, new { htmlAttributes = new { @class = "form-control" } })
+						@Html.ValidationMessageFor(model => model.DetalleChofer.DescripcionUnidad, "", new { @class = "text-danger" })
+					</div>
+				</div>
+			</div>
+		}
+	</div>*@
+@section scripts{
+	<script>
+		$(document).ready(function () {
+			$("form input").prop("disabled", true)
+			$("form select").prop("disabled", true)
+			$('#swHabilitarEdicion').on('change', function () {
+				let value = $('#swHabilitarEdicion').prop('checked')
+				if (value) {
+					Swal.fire({
+						title: 'Atención',
+						text: 'Tenga cuidado al modificar la información',
+						icon: 'warning'
+					})
+				}
+				$("form input").prop("disabled", !value)
+				$("form select").prop("disabled", !value)
+			})
+		})
+	</script>
+}

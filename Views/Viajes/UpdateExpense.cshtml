@@ -35,9 +35,19 @@
 								<div class="row">
 									<div class="col-md-12">
 										<div class="form-group">
+											@Html.Label("", "Gastos Actuales", new { @class = "control-label" })
+											<div class="col-md-10">
+												@Html.DisplayFor(model => model.tbContabilidadViaje.Gastos, new { @class = "form-control", type = "number", min = Model.tbContabilidadViaje.Gastos })
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12">
+										<div class="form-group">
 											@Html.Label("", "Nuevo Gasto", new { @class = "control-label" })
 											<div class="col-md-10">
-												@Html.TextBoxFor(model => model.tbContabilidadViaje.Gastos, new { @class = "form-control", type = "number", min = Model.tbContabilidadViaje.Gastos })
+												@Html.TextBoxFor(model => model.tbContabilidadViaje.Gastos, new { @class = "form-control", type = "number" })
 												@Html.ValidationMessageFor(model => model.tbContabilidadViaje.Gastos, "", new { @class = "text-danger" })
 											</div>
 										</div>
@@ -72,8 +82,11 @@
 	<script>
 		$(document).ready(function () {
 			let salario = @Model.tbContabilidadViaje.SalarioNeto
+
+			$('#tbContabilidadViaje_Gastos').val(0)
+
 			$('#tbContabilidadViaje_Gastos').on('keyup change', function () {
-				let gasto = $(this).val()
+				let gasto = Number($(this).val())
 				$('#tbContabilidadViaje_SalarioNeto').val(salario - gasto)
 			})
 		})

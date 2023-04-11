@@ -88,15 +88,15 @@
 								@Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
 							<div class="btn-toolbar">
 								<div class="btn-group">
-									<a class="btn btn-info">
+									@*<a class="btn btn-info">
 										<i class="fa fa-info-circle"></i>
-									</a>
+									</a>*@
 									<a class="btn btn-info" href="@Url.Action("ConfigPermissions", new { UsuarioId = item.UsuarioId })">
 										<i class="fa fa-low-vision"></i>
 									</a>
-									<button class="btn btn-danger" onclick="eliminarUsuario(@item.UsuarioId)">
+									@*<button class="btn btn-danger" onclick="eliminarUsuario(@item.UsuarioId)">
 										<i class="fa fa-trash-alt"></i>
-									</button>
+									</button>*@
 								</div>
 							</div>
 						</td>
