@@ -20,8 +20,19 @@ namespace SoteloProjectFramework.Controllers
         {
             string Fecha = DateTime.Now.ToString("yyyy-MM-dd");
             var model = db.tbViajes.Where(x => x.FechaStr == Fecha).ToList();
-            ViewBag.Hoy = DateTime.Now.ToLongDateString();
-            return View(model);
+            ViewBag.FechaNatural = DateTime.Now.ToLongDateString();
+            ViewBag.Fecha = Fecha;
+            return View("~/Views/Viajes/Index.cshtml", model);
+        }
+
+        [HttpPost]
+        public ActionResult Index(string Fecha)
+        {
+            //string Fecha = DateTime.Parse(Fecha).ToString("yyyy-MM-dd");
+            var model = db.tbViajes.Where(x => x.FechaStr == Fecha).ToList();
+            ViewBag.FechaNatural = DateTime.Parse(Fecha).ToLongDateString();
+            ViewBag.Fecha = Fecha;
+            return View("~/Views/Viajes/Index.cshtml", model);
         }
 
         [ActionName("Create1")]

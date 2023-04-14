@@ -1,41 +1,118 @@
 ﻿@model IEnumerable<SoteloProjectFramework.Models.tbViajes>
 
 @{
-    ViewBag.Title = "Viajes";
-    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
-    string Hoy = ViewBag.Hoy;
+	ViewBag.Title = "Viajes";
+	Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+	string FechaNatural = ViewBag.FechaNatural;
+	string Fecha = ViewBag.Fecha;
 }
 
-<h2>Viajes del día</h2>
-<h3>@Hoy</h3>
+<style>
+	table tbody tr:hover {
+		background-color: #4a4a4a;
+		cursor: pointer;
+	}
+
+	.rowSelected {
+		background-color: #4a4a4a;
+	}
+
+	.rowUnselected {
+		background-color: none;
+	}
+</style>
+
+<h2>Viajes</h2>
+
+<form action="@Url.Action("Index")" method="post">
+	<div class="form-horizontal">
+		<div class="form-group">
+			<label for="inputFecha">Fecha</label>
+			<input type="date" class="form-control" name="Fecha" id="Fecha" placeholder="Fecha" value="@Fecha">
+		</div>
+		<div class="form-group">
+			<button type="submit" class="btn btn-light"><i class="fa fa-search"></i> Buscar</button>
+		</div>
+	</div>
+</form>
+
+<h3>@FechaNatural</h3>
 
 <p>
-    @Html.ActionLink("Nuevo Viaje", "Create1")
+	@Html.ActionLink("Nuevo Viaje", "Create1")
 </p>
 <table class="table">
-    <tr>
-		<th>Chofer</th>
-        <th>Origen</th>
-        <th>Destino</th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-		<td>
-			@Html.DisplayFor(modelItem => item.tbChoferes.Nombres) @Html.DisplayFor(modelItem => item.tbChoferes.PrimerApellido) @Html.DisplayFor(modelItem => item.tbChoferes.SegundoApellido)
-		</td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LugarOrigen)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LugarDestino)
-        </td>
-        @*<td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>*@
-    </tr>
-}
+	<thead>
+		<tr>
+			<th>Chofer</th>
+			<th>Origen</th>
+			<th>Destino</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr id="@item.ViajeId">
+				<td>
+					@Html.DisplayFor(modelItem => item.tbChoferes.Nombres) @Html.DisplayFor(modelItem => item.tbChoferes.PrimerApellido) @Html.DisplayFor(modelItem => item.tbChoferes.SegundoApellido)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.LugarOrigen)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.LugarDestino)
+				</td>
+				@*<td>
+						@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+						@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+						@Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+					</td>*@
+			</tr>
+		}
+	</tbody>
 
 </table>
+
+<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+	<div class="btn-group" role="group" aria-label="Third group">
+		<button type="button" class="btn btn-outline-success" onclick="MostrarDetalles();"><i class="fa fa-info-circle"></i> Mostrar Detalles</button>
+	</div>
+</div>
+
+@section scripts{
+	<script>
+		var currentIdSelected = -1
+
+		function MostrarDetalles() {
+			if (currentIdSelected != -1) {
+				window.location = `@Url.Action("Details", "Viajes")?ViajeId=${currentIdSelected}`
+			} else {
+				Swal.fire({
+					title: '¡Atención!',
+					text: 'Es necesario seleccionar un viaje',
+					icon: 'warning'
+				})
+			}
+		}
+
+		$(document).ready(function () {
+			$('table tbody tr').click(function () {
+				$.each($('table tbody tr'), function (i, e) {
+					if (e != this) {
+						$(e).removeClass('rowSelected')
+					}
+				})
+				if ($(this).hasClass('rowSelected')) {
+					$(this).removeClass('rowSelected')
+					$(this).addClass('rowUnselected')
+					currentIdSelected = -1
+				} else {
+					$(this).removeClass('rowUnselected')
+					$(this).addClass('rowSelected')
+					currentIdSelected = $(this).attr('id')
+				}
+				$('.Viaje').val(currentIdSelected)
+			})
+		})
+	</script>
+}
